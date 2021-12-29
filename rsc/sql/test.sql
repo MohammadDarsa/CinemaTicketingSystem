@@ -1,1 +1,2 @@
-select * from movie;
+select * from movie ;
+
