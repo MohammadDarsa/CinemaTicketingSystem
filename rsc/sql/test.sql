@@ -1,1 +1,2 @@
-select id_movie from movie;
+select * from movie ;
+
