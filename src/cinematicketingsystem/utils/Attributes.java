@@ -6,7 +6,6 @@ import java.util.Map;
 public class Attributes {
     private String tableName;
     private HashMap<String, String> attributes;
-
     public Attributes(){
         tableName = "";
         attributes = new HashMap<>();
@@ -43,11 +42,11 @@ public class Attributes {
     }
 
     protected String getColumns(String joint) {
-        String s = "";
+        StringBuilder s = new StringBuilder();
         for (Map.Entry<String, String> entry : attributes.entrySet()) {
-            s = s + entry.getKey() + joint + " ";
+            s.append(entry.getKey()).append(joint).append(" ");
         }
-        s = s.substring(0, s.length()-(joint.length()+1));
-        return s;
+        s = new StringBuilder(s.substring(0, s.length() - (joint.length() + 1)));
+        return s.toString();
     }
 }
