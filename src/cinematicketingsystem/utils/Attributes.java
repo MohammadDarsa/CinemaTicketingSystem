@@ -49,4 +49,13 @@ public class Attributes {
         s = new StringBuilder(s.substring(0, s.length() - (joint.length() + 1)));
         return s.toString();
     }
+
+    protected String getValues(String joint) {
+        StringBuilder s = new StringBuilder();
+        for (Map.Entry<String, String> entry : attributes.entrySet()) {
+            s.append("'").append(entry.getValue()).append("'").append(joint).append(" ");
+        }
+        s = new StringBuilder(s.substring(0, s.length() - (joint.length() + 1)));
+        return s.toString();
+    }
 }

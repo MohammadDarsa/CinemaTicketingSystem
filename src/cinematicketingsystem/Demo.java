@@ -19,14 +19,12 @@ public class Demo extends Application {
 //        stage.setTitle("rin best girl <3");
 //        sceneManager.setStage(stage);
 //        sceneManager.switchScene(null, "/view/helloWorld.fxml");
-
-        Attributes setValues = new Attributes("movie");
-        setValues.addAttribute("price_movie", "10");
         Attributes attributes = new Attributes("movie");
-        attributes.addAttribute("name_movie", "A Silent Voice");
-
-        dbManager.updateEntity(setValues, attributes, "and", "=");
-
+        attributes.addAttribute("name_movie", "helloWorld");
+        attributes.addAttribute("desc_movie", "umu");
+        attributes.addAttribute("tor_movie", "2022-01-01");
+        attributes.addAttribute("price_movie", "3");
+        dbManager.insertEntity(attributes);
         List<Movie> movieList = dbManager.selectAll(Movie.class);
         for (Movie m : movieList) {
             System.out.println(m);
