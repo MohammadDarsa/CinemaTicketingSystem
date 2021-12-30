@@ -6,12 +6,14 @@ import cinematicketingsystem.annotations.Table;
 
 import java.util.Objects;
 
+//customer table <=> Customer
+
 @Table(name = "customer")
 public class Customer {
     @ID
-    @Col(name = "id_customer", updateIgnore = true, insertIgnore = true)
+    @Col(name = "id_customer", insertIgnore = true)
     private String id;
-    @Col(name = "username_customer")
+    @Col(name = "username_customer", updateIgnore = true)
     private String userName;
     @Col(name = "password_customer")
     private String password;

@@ -255,4 +255,12 @@ public class DBManager {
         String query = "select * from " + table.name() + " where " + attributes.getString(joint, operator);
         return executeQuery(query, entity);
     }
+
+    public void updateEntity(Attributes setValues, Attributes attributes, String joint, String operator) {
+        String s = "update " + setValues.getTableName() + " set " + setValues.getString(",", "=") + " where " + attributes.getString(joint, operator);
+        executeUpdate(s);
+    }
+    public void updateEntity(Attributes setValues, Attributes attributes) {
+        updateEntity(setValues, attributes, "and", "=");
+    }
 }
