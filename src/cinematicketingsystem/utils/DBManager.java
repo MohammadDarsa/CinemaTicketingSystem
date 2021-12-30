@@ -256,11 +256,36 @@ public class DBManager {
         return executeQuery(query, entity);
     }
 
-    public void updateEntity(Attributes setValues, Attributes attributes, String joint, String operator) {
+    public void updateEntity(Attributes setValues, Attributes attributes, String joint, String operator) throws EntityNotFoundException {
+        if(countEntities(setValues.getTableName(), attributes, joint, operator) <= 0) throw new EntityNotFoundException("Entity not found");
         String s = "update " + setValues.getTableName() + " set " + setValues.getString(",", "=") + " where " + attributes.getString(joint, operator);
         executeUpdate(s);
     }
-    public void updateEntity(Attributes setValues, Attributes attributes) {
+    public void updateEntity(Attributes setValues, Attributes attributes) throws EntityNotFoundException {
         updateEntity(setValues, attributes, "and", "=");
+    }
+
+    public void insertEntity(Attributes attributes) {
+        String query = "insert into " + attributes.getTableName() + " (" + attributes.getColumns(",") + " ) values ( " + attributes.getValues(",") + " )";
+        executeUpdate(query);
+    }
+
+    public int executeCount(String query) {
+        int num = 0;
+        try {
+            createConnection();
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(query);
+            num = resultSet.getInt(1);
+            connection.close();
+        }catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        }
+        return num;
+    }
+
+    public int countEntities(String tableName, Attributes attributes, String joint, String operator) {
+        String check = "select count(*) from " + tableName + " where " + attributes.getString(joint, operator);
+        return executeCount(check);
     }
 }
