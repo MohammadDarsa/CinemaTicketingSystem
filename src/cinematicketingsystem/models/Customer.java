@@ -23,21 +23,31 @@ public class Customer {
     private String money;
 
     public Customer() {
+        this.id = "";
+        this.userName = "";
+        this.password = "";
+        this.email = "";
+        this.money = "";
     }
 
-    public Customer(String userName, String password, String email, String money) {
-        this.userName = userName;
-        this.password = password;
+    public void setEmail(String email) {
         this.email = email;
-        this.money = money;
     }
 
-    public Customer(String id, String userName, String password, String email, String money) {
+    public void setId(String id) {
         this.id = id;
-        this.userName = userName;
-        this.password = password;
-        this.email = email;
+    }
+
+    public void setMoney(String money) {
         this.money = money;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     @Override
