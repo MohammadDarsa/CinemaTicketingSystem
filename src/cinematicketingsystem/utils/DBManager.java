@@ -17,9 +17,9 @@ import java.util.List;
 public class DBManager {
     private static DBManager instance;
     private Connection connection;
-    private final String url = "jdbc:mysql://bw8vg030tuezxbpr6mj2-mysql.services.clever-cloud.com/bw8vg030tuezxbpr6mj2";
-    private final String user = "u8iiuo74brq3xzku";
-    private final String password = "h9UlTaTbwKiTf3fY5rEQ";
+    private final String url = "jdbc:mysql://localhost:3306/mydb?characterEncoding=latin1&useConfigs=maxPerformance";
+    private final String user = "root";
+    private final String password = "kouti123";
 
     private DBManager() {}
 
