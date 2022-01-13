@@ -9,6 +9,8 @@ import javafx.stage.Stage;
 public class Demo extends Application {
     private final SceneManager sceneManager = SceneManager.getInstance();
     private final DBManager dbManager = DBManager.getInstance();
+
+
     @Override
     public void start(Stage stage) throws Exception {
         stage.setTitle("rin best girl <3");

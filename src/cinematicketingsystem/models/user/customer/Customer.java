@@ -23,20 +23,23 @@ public class Customer {
     private String balance;
     @Col(name  = "address")
     private String address;
+    @Col(name = "tickets_bought", updateIgnore = true, insertIgnore = true)
+    private String ticketsBought;
 
     public Customer() {
     }
 
-    public Customer(String name, String password, String phone, String email, String balance, String address) {
+    public Customer(String name, String password, String phone, String email, String balance, String address, String ticketsBought) {
         this.name = name;
         this.password = password;
         this.phone = phone;
         this.email = email;
         this.balance = balance;
         this.address = address;
+        this.ticketsBought = ticketsBought;
     }
 
-    public Customer(String id, String name, String password, String phone, String email, String balance, String address) {
+    public Customer(String id, String name, String password, String phone, String email, String balance, String address, String ticketsBought) {
         this.id = id;
         this.name = name;
         this.password = password;
@@ -44,6 +47,7 @@ public class Customer {
         this.email = email;
         this.balance = balance;
         this.address = address;
+        this.ticketsBought = ticketsBought;
     }
 
     public String getId() {
@@ -109,6 +113,15 @@ public class Customer {
         return this;
     }
 
+    public String getTicketsBought() {
+        return ticketsBought;
+    }
+
+    public Customer setTicketsBought(String ticketsBought) {
+        this.ticketsBought = ticketsBought;
+        return this;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -132,6 +145,7 @@ public class Customer {
                 ", email='" + email + '\'' +
                 ", balance='" + balance + '\'' +
                 ", address='" + address + '\'' +
+                ", ticketsBought='" + ticketsBought + '\'' +
                 '}';
     }
 }

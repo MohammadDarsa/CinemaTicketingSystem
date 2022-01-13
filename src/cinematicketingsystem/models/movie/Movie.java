@@ -1,4 +1,4 @@
-package cinematicketingsystem.models;
+package cinematicketingsystem.models.movie;
 
 //database table movie <=> Movie class
 
@@ -27,13 +27,15 @@ public class Movie {
     private String rating;
     @Col(name = "len")
     private String length;
+    @Col(name = "tickets_sold", updateIgnore = true, insertIgnore = true)
+    private String ticketsSold;
     @Col(name = "admin_id", insertIgnore = true, updateIgnore = true)
     private String adminId;
 
     public Movie() {
     }
 
-    public Movie(String name, String description, String screenPlayTime, String price, String language, String rating, String length, String adminId) {
+    public Movie(String name, String description, String screenPlayTime, String price, String language, String rating, String length, String ticketsSold, String adminId) {
         this.name = name;
         this.description = description;
         this.screenPlayTime = screenPlayTime;
@@ -41,10 +43,11 @@ public class Movie {
         this.language = language;
         this.rating = rating;
         this.length = length;
+        this.ticketsSold = ticketsSold;
         this.adminId = adminId;
     }
 
-    public Movie(String id, String name, String description, String screenPlayTime, String price, String language, String rating, String length, String adminId) {
+    public Movie(String id, String name, String description, String screenPlayTime, String price, String language, String rating, String length, String ticketsSold, String adminId) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -53,7 +56,17 @@ public class Movie {
         this.language = language;
         this.rating = rating;
         this.length = length;
+        this.ticketsSold = ticketsSold;
         this.adminId = adminId;
+    }
+
+    public String getTicketsSold() {
+        return ticketsSold;
+    }
+
+    public Movie setTicketsSold(String ticketsSold) {
+        this.ticketsSold = ticketsSold;
+        return this;
     }
 
     public String getId() {
@@ -161,6 +174,7 @@ public class Movie {
                 ", language='" + language + '\'' +
                 ", rating='" + rating + '\'' +
                 ", length='" + length + '\'' +
+                ", ticketsSold='" + ticketsSold + '\'' +
                 ", adminId='" + adminId + '\'' +
                 '}';
     }

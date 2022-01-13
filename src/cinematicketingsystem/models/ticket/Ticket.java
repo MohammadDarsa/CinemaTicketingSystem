@@ -1,4 +1,4 @@
-package cinematicketingsystem.models;
+package cinematicketingsystem.models.ticket;
 
 import cinematicketingsystem.annotations.Col;
 import cinematicketingsystem.annotations.ID;
