@@ -5,7 +5,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
 public class HelloWorldController {
-
     @FXML
     private Button btn;
 
@@ -13,5 +12,4 @@ public class HelloWorldController {
     void onclick(ActionEvent event) {
         System.out.println("clicked!!!");
     }
-
 }
