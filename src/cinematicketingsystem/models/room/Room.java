@@ -10,44 +10,44 @@ import java.util.Objects;
 public class Room {
     @ID
     @Col(name = "id")
-    private String id;
+    private Integer id;
     @Col(name = "screen_size")
-    private String screenSize;
+    private Integer screenSize;
     @Col(name = "theater_type")
     private String theaterType;
     @Col(name = "number_seats")
-    private String seatsNumber;
+    private Integer seatsNumber;
 
     public Room() {
     }
 
-    public Room(String screenSize, String theaterType, String seatsNumber) {
+    public Room(Integer screenSize, String theaterType, Integer seatsNumber) {
         this.screenSize = screenSize;
         this.theaterType = theaterType;
         this.seatsNumber = seatsNumber;
     }
 
-    public Room(String id, String screenSize, String theaterType, String seatsNumber) {
+    public Room(Integer id, Integer screenSize, String theaterType, Integer seatsNumber) {
         this.id = id;
         this.screenSize = screenSize;
         this.theaterType = theaterType;
         this.seatsNumber = seatsNumber;
     }
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public Room setId(String id) {
+    public Room setId(Integer id) {
         this.id = id;
         return this;
     }
 
-    public String getScreenSize() {
+    public Integer getScreenSize() {
         return screenSize;
     }
 
-    public Room setScreenSize(String screenSize) {
+    public Room setScreenSize(Integer screenSize) {
         this.screenSize = screenSize;
         return this;
     }
@@ -61,11 +61,11 @@ public class Room {
         return this;
     }
 
-    public String getSeatsNumber() {
+    public Integer getSeatsNumber() {
         return seatsNumber;
     }
 
-    public Room setSeatsNumber(String seatsNumber) {
+    public Room setSeatsNumber(Integer seatsNumber) {
         this.seatsNumber = seatsNumber;
         return this;
     }
@@ -75,7 +75,7 @@ public class Room {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Room room = (Room) o;
-        return id.equals(room.id);
+        return Objects.equals(id, room.id);
     }
 
     @Override
@@ -86,10 +86,10 @@ public class Room {
     @Override
     public String toString() {
         return "Room{" +
-                "id='" + id + '\'' +
-                ", screenSize='" + screenSize + '\'' +
+                "id=" + id +
+                ", screenSize=" + screenSize +
                 ", theaterType='" + theaterType + '\'' +
-                ", seatsNumber='" + seatsNumber + '\'' +
+                ", seatsNumber=" + seatsNumber +
                 '}';
     }
 }

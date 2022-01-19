@@ -4,14 +4,16 @@ import cinematicketingsystem.annotations.Col;
 import cinematicketingsystem.annotations.ID;
 import cinematicketingsystem.annotations.Table;
 import cinematicketingsystem.exceptions.sqlExceptions.EntityNotFoundException;
-import javafx.scene.control.Tab;
 
 import java.io.*;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.sql.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 public class DBManager {
@@ -105,7 +107,9 @@ public class DBManager {
         query = new StringBuilder(query.substring(0, query.length() - 2) + ") values (");
         for(Field field:fieldList) {
             try {
+//                if(field.getType().equals(Timestamp.class)) query.append("STR_TO_DATE(");
                 query.append("'").append(field.get(item).toString()).append("', ");
+//                if(field.getType().equals(Timestamp.class)) query.append("'%Y-%m-%d %H:%i:%s.%f'), ");
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
             }
@@ -155,14 +159,14 @@ public class DBManager {
             for(Field field:fieldList) {
                 Col col = field.getAnnotation(Col.class);
                 try {
-                    query.append(col.name()).append(" = '").append((String) field.get(item)).append("', ");
+                    query.append(col.name()).append(" = '").append(field.get(item).toString()).append("', ");
                 } catch (IllegalAccessException e) {
                     e.printStackTrace();
                 }
             }
             query = new StringBuilder(query.substring(0, query.length() - 2));
             try {
-                query.append(" where ").append(idField.getAnnotation(Col.class).name()).append(" = ").append((String) idField.get(item)).append(";");
+                query.append(" where ").append(idField.getAnnotation(Col.class).name()).append(" = ").append(idField.get(item).toString()).append(";");
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
             }
@@ -196,7 +200,11 @@ public class DBManager {
                     String name = col.name();
                     try {
                         String value = resultSet.getString(name);
-                        field.set(dto, field.getType().getConstructor(String.class).newInstance(value));
+//                        System.out.println(resultSet.getObject(name).getClass());
+                        Class<?> type = field.getType();
+//                        System.out.println(type);
+//                        field.set(dto, type.getConstructor(String.class).newInstance(value));
+                        changeToObj(field, type, value, dto);
                     } catch (Exception e) {
 //                        e.printStackTrace();
                     }
@@ -205,6 +213,22 @@ public class DBManager {
             list.add(dto);
         }
         return list;
+    }
+
+    private <T> void changeToObj(Field field, Class<?> type, String value, T dto) throws Exception {
+        if(type.equals(Timestamp.class)) {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+            SimpleDateFormat dateFormat1 = new SimpleDateFormat("hh:mm:ss");
+            Date parsedDate = null;
+            if(value.length() == 8)
+            parsedDate = dateFormat1.parse(value);
+            else parsedDate = dateFormat.parse(value);
+            Timestamp timestamp = new Timestamp(parsedDate.getTime());
+            field.set(dto, timestamp);
+        } else {
+            field.set(dto, type.getConstructor(String.class).newInstance(value));
+        }
+
     }
 
     public <T> void deleteEntity(T item, Class<T> entity) {

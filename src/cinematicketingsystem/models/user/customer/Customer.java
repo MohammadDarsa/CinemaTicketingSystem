@@ -10,26 +10,26 @@ import java.util.Objects;
 public class Customer {
     @ID
     @Col(name  = "id")
-    private String id;
+    private Integer id;
     @Col(name  = "username")
     private String name;
     @Col(name  = "password")
     private String password;
     @Col(name  = "phone")
-    private String phone;
+    private Integer phone;
     @Col(name  = "email")
     private String email;
     @Col(name  = "balance")
-    private String balance;
+    private Double balance;
     @Col(name  = "address")
     private String address;
     @Col(name = "tickets_bought", updateIgnore = true, insertIgnore = true)
-    private String ticketsBought;
+    private Integer ticketsBought;
 
     public Customer() {
     }
 
-    public Customer(String name, String password, String phone, String email, String balance, String address, String ticketsBought) {
+    public Customer(String name, String password, Integer phone, String email, Double balance, String address, Integer ticketsBought) {
         this.name = name;
         this.password = password;
         this.phone = phone;
@@ -39,7 +39,7 @@ public class Customer {
         this.ticketsBought = ticketsBought;
     }
 
-    public Customer(String id, String name, String password, String phone, String email, String balance, String address, String ticketsBought) {
+    public Customer(Integer id, String name, String password, Integer phone, String email, Double balance, String address, Integer ticketsBought) {
         this.id = id;
         this.name = name;
         this.password = password;
@@ -50,11 +50,11 @@ public class Customer {
         this.ticketsBought = ticketsBought;
     }
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public Customer setId(String id) {
+    public Customer setId(Integer id) {
         this.id = id;
         return this;
     }
@@ -77,11 +77,11 @@ public class Customer {
         return this;
     }
 
-    public String getPhone() {
+    public Integer getPhone() {
         return phone;
     }
 
-    public Customer setPhone(String phone) {
+    public Customer setPhone(Integer phone) {
         this.phone = phone;
         return this;
     }
@@ -95,11 +95,11 @@ public class Customer {
         return this;
     }
 
-    public String getBalance() {
+    public Double getBalance() {
         return balance;
     }
 
-    public Customer setBalance(String balance) {
+    public Customer setBalance(Double balance) {
         this.balance = balance;
         return this;
     }
@@ -113,11 +113,11 @@ public class Customer {
         return this;
     }
 
-    public String getTicketsBought() {
+    public Integer getTicketsBought() {
         return ticketsBought;
     }
 
-    public Customer setTicketsBought(String ticketsBought) {
+    public Customer setTicketsBought(Integer ticketsBought) {
         this.ticketsBought = ticketsBought;
         return this;
     }
@@ -127,7 +127,7 @@ public class Customer {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Customer customer = (Customer) o;
-        return id.equals(customer.id);
+        return Objects.equals(id, customer.id);
     }
 
     @Override
@@ -138,14 +138,14 @@ public class Customer {
     @Override
     public String toString() {
         return "Customer{" +
-                "id='" + id + '\'' +
+                "id=" + id +
                 ", name='" + name + '\'' +
                 ", password='" + password + '\'' +
-                ", phone='" + phone + '\'' +
+                ", phone=" + phone +
                 ", email='" + email + '\'' +
-                ", balance='" + balance + '\'' +
+                ", balance=" + balance +
                 ", address='" + address + '\'' +
-                ", ticketsBought='" + ticketsBought + '\'' +
+                ", ticketsBought=" + ticketsBought +
                 '}';
     }
 }

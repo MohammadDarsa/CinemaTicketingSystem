@@ -1,0 +1,30 @@
+@font-face {
+    font-family: 'Poppins';
+    src: url('../fonts/Poppins');
+}
+
+.sideNavComp{
+    -fx-padding: 10 10 10 30;
+}
+
+.nav {
+    -fx-background-color: #090638;
+}
+
+.labelNav {
+    -fx-font-size: 18px;
+    -fx-text-fill: #fff;
+    -fx-font-family: 'Poppins';
+}
+
+.imgNav{
+    -fx-padding: 10px;
+}
+
+.sideNavComp:hover{
+    -fx-background-color: #100A64;
+}
+
+.sideNavComp:pressed{
+    -fx-background-color: #090638;
+}

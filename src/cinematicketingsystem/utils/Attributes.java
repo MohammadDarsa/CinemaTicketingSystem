@@ -6,7 +6,6 @@ import java.util.Map;
 public class Attributes {
     private String tableName;
     private HashMap<String, String> attributes;
-    //name_movie, "A silent voice"
     public Attributes(){
         tableName = "";
         attributes = new HashMap<>();
