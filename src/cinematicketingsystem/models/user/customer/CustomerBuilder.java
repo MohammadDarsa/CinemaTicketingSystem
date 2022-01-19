@@ -1,46 +1,72 @@
 package cinematicketingsystem.models.user.customer;
 
-public class CustomerBuilder {
-    private Customer customer;
+public final class CustomerBuilder {
+    private Integer id;
+    private String name;
+    private String password;
+    private Integer phone;
+    private String email;
+    private Double balance;
+    private String address;
+    private Integer ticketsBought;
 
-    public CustomerBuilder() {
-        customer = new Customer();
-        customer.setTicketsBought("0");
+    private CustomerBuilder() {
     }
-    public void buildId(String id){
+
+    public static CustomerBuilder aCustomer() {
+        return new CustomerBuilder();
+    }
+
+    public CustomerBuilder setId(Integer id) {
+        this.id = id;
+        return this;
+    }
+
+    public CustomerBuilder setName(String name) {
+        this.name = name;
+        return this;
+    }
+
+    public CustomerBuilder setPassword(String password) {
+        this.password = password;
+        return this;
+    }
+
+    public CustomerBuilder setPhone(Integer phone) {
+        this.phone = phone;
+        return this;
+    }
+
+    public CustomerBuilder setEmail(String email) {
+        this.email = email;
+        return this;
+    }
+
+    public CustomerBuilder setBalance(Double balance) {
+        this.balance = balance;
+        return this;
+    }
+
+    public CustomerBuilder setAddress(String address) {
+        this.address = address;
+        return this;
+    }
+
+    public CustomerBuilder setTicketsBought(Integer ticketsBought) {
+        this.ticketsBought = ticketsBought;
+        return this;
+    }
+
+    public Customer build() {
+        Customer customer = new Customer();
         customer.setId(id);
-    }
-
-    public void buildUserName(String userName){
-        customer.setName(userName);
-    }
-
-    public void buildPassword(String password){
+        customer.setName(name);
         customer.setPassword(password);
-    }
-
-    public void buildMoney(String balance){
-        customer.setBalance(balance);
-    }
-
-    public void buildEmail(String email){
-        customer.setEmail(email);
-    }
-
-    public void buildPhone(String phone) {
         customer.setPhone(phone);
-    }
-
-    public void buildAddress(String address) {
+        customer.setEmail(email);
+        customer.setBalance(balance);
         customer.setAddress(address);
-    }
-
-    public void buildTicketsBought(String ticketsBought) {
         customer.setTicketsBought(ticketsBought);
-    }
-
-    public Customer getCustomer(){
         return customer;
     }
-
 }

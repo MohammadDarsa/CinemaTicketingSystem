@@ -10,27 +10,27 @@ import java.util.Objects;
 public class Seat {
     @ID
     @Col(name = "id")
-    private String id;
+    private Integer id;
     @Col(name = "seat_num")
-    private String seatNumber;
+    private Integer seatNumber;
     @Col(name = "row_num")
-    private String rowNumber;
+    private Integer rowNumber;
     @Col(name = "taken")
-    private String isTaken;
+    private Boolean isTaken;
     @Col(name = "room_id", insertIgnore = true, updateIgnore = true)
-    private String roomId;
+    private Integer roomId;
 
     public Seat() {
     }
 
-    public Seat(String seatNumber, String rowNumber, String isTaken, String roomId) {
+    public Seat(Integer seatNumber, Integer rowNumber, Boolean isTaken, Integer roomId) {
         this.seatNumber = seatNumber;
         this.rowNumber = rowNumber;
         this.isTaken = isTaken;
         this.roomId = roomId;
     }
 
-    public Seat(String id, String seatNumber, String rowNumber, String isTaken, String roomId) {
+    public Seat(Integer id, Integer seatNumber, Integer rowNumber, Boolean isTaken, Integer roomId) {
         this.id = id;
         this.seatNumber = seatNumber;
         this.rowNumber = rowNumber;
@@ -38,47 +38,47 @@ public class Seat {
         this.roomId = roomId;
     }
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public Seat setId(String id) {
+    public Seat setId(Integer id) {
         this.id = id;
         return this;
     }
 
-    public String getSeatNumber() {
+    public Integer getSeatNumber() {
         return seatNumber;
     }
 
-    public Seat setSeatNumber(String seatNumber) {
+    public Seat setSeatNumber(Integer seatNumber) {
         this.seatNumber = seatNumber;
         return this;
     }
 
-    public String getRowNumber() {
+    public Integer getRowNumber() {
         return rowNumber;
     }
 
-    public Seat setRowNumber(String rowNumber) {
+    public Seat setRowNumber(Integer rowNumber) {
         this.rowNumber = rowNumber;
         return this;
     }
 
-    public String getIsTaken() {
+    public Boolean getTaken() {
         return isTaken;
     }
 
-    public Seat setIsTaken(String isTaken) {
-        this.isTaken = isTaken;
+    public Seat setTaken(Boolean taken) {
+        isTaken = taken;
         return this;
     }
 
-    public String getRoomId() {
+    public Integer getRoomId() {
         return roomId;
     }
 
-    public Seat setRoomId(String roomId) {
+    public Seat setRoomId(Integer roomId) {
         this.roomId = roomId;
         return this;
     }
@@ -88,7 +88,7 @@ public class Seat {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Seat seat = (Seat) o;
-        return id.equals(seat.id);
+        return Objects.equals(id, seat.id);
     }
 
     @Override
@@ -99,11 +99,11 @@ public class Seat {
     @Override
     public String toString() {
         return "Seat{" +
-                "id='" + id + '\'' +
-                ", seatNumber='" + seatNumber + '\'' +
-                ", rowNumber='" + rowNumber + '\'' +
-                ", isTaken='" + isTaken + '\'' +
-                ", roomId='" + roomId + '\'' +
+                "id=" + id +
+                ", seatNumber=" + seatNumber +
+                ", rowNumber=" + rowNumber +
+                ", isTaken=" + isTaken +
+                ", roomId=" + roomId +
                 '}';
     }
 }

@@ -43,4 +43,14 @@ public class SceneManager {
         stage.setScene(scene);
         stage.show();
     }
+
+    public void switchScene(Event event, String path, String styleSheet) throws IOException {
+        root = FXMLLoader.load(getClass().getResource(path));
+        root.getStylesheets().add(getClass().getResource("/css/"+styleSheet).toString());
+        if(event != null)
+            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
 }

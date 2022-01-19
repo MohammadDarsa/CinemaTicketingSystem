@@ -10,13 +10,13 @@ import java.util.Objects;
 public class Admin {
     @ID
     @Col(name  = "id")
-    private String id;
-    @Col(name  = "name")
+    private Integer id;
+    @Col(name  = "aname")
     private String name;
     @Col(name  = "address")
     private String address;
     @Col(name  = "phone")
-    private String phone;
+    private Integer phone;
     @Col(name  = "email")
     private String email;
     @Col(name  = "password")
@@ -25,7 +25,7 @@ public class Admin {
     public Admin() {
     }
 
-    public Admin(String name, String address, String phone, String email, String password) {
+    public Admin(String name, String address, Integer phone, String email, String password) {
         this.name = name;
         this.address = address;
         this.phone = phone;
@@ -33,7 +33,7 @@ public class Admin {
         this.password = password;
     }
 
-    public Admin(String id, String name, String address, String phone, String email, String password) {
+    public Admin(Integer id, String name, String address, Integer phone, String email, String password) {
         this.id = id;
         this.name = name;
         this.address = address;
@@ -42,11 +42,11 @@ public class Admin {
         this.password = password;
     }
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public Admin setId(String id) {
+    public Admin setId(Integer id) {
         this.id = id;
         return this;
     }
@@ -69,11 +69,11 @@ public class Admin {
         return this;
     }
 
-    public String getPhone() {
+    public Integer getPhone() {
         return phone;
     }
 
-    public Admin setPhone(String phone) {
+    public Admin setPhone(Integer phone) {
         this.phone = phone;
         return this;
     }

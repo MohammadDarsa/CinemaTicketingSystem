@@ -1,10 +1,12 @@
 package cinematicketingsystem;
 
 
+import cinematicketingsystem.models.movie.Movie;
 import cinematicketingsystem.utils.DBManager;
 import cinematicketingsystem.utils.SceneManager;
 import javafx.application.Application;
 import javafx.stage.Stage;
+
 
 public class Demo extends Application {
     private final SceneManager sceneManager = SceneManager.getInstance();
@@ -15,7 +17,8 @@ public class Demo extends Application {
     public void start(Stage stage) throws Exception {
         stage.setTitle("rin best girl <3");
         sceneManager.setStage(stage);
-        sceneManager.switchScene(null, "/view/helloWorld.fxml");
+        sceneManager.switchScene(null, "/view/test.fxml", "style.css");
+        dbManager.selectAll(Movie.class).forEach(System.out::println);
     }
 
     public static void main(String[] args) {

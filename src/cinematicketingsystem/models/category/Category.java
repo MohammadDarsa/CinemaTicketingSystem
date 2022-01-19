@@ -10,7 +10,7 @@ import java.util.Objects;
 public class Category {
     @ID
     @Col(name = "id")
-    private String id;
+    private Integer id;
     @Col(name = "name")
     private String name;
 
@@ -21,16 +21,16 @@ public class Category {
         this.name = name;
     }
 
-    public Category(String id, String name) {
+    public Category(Integer id, String name) {
         this.id = id;
         this.name = name;
     }
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public Category setId(String id) {
+    public Category setId(Integer id) {
         this.id = id;
         return this;
     }
@@ -49,7 +49,7 @@ public class Category {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Category category = (Category) o;
-        return id.equals(category.id);
+        return Objects.equals(id, category.id);
     }
 
     @Override
@@ -60,7 +60,7 @@ public class Category {
     @Override
     public String toString() {
         return "Category{" +
-                "id='" + id + '\'' +
+                "id=" + id +
                 ", name='" + name + '\'' +
                 '}';
     }
