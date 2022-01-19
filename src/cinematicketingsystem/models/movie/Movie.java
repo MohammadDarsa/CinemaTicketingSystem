@@ -1,7 +1,5 @@
 package cinematicketingsystem.models.movie;
 
-//database table movie <=> Movie class
-
 import cinematicketingsystem.annotations.Col;
 import cinematicketingsystem.annotations.ID;
 import cinematicketingsystem.annotations.Table;

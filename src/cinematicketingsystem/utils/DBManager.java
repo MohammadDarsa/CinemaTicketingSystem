@@ -106,9 +106,7 @@ public class DBManager {
         query = new StringBuilder(query.substring(0, query.length() - 2) + ") values (");
         for(Field field:fieldList) {
             try {
-//                if(field.getType().equals(Timestamp.class)) query.append("STR_TO_DATE(");
                 query.append("'").append(field.get(item).toString()).append("', ");
-//                if(field.getType().equals(Timestamp.class)) query.append("'%Y-%m-%d %H:%i:%s.%f'), ");
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
             }
@@ -223,7 +221,6 @@ public class DBManager {
         } else {
             field.set(dto, type.getConstructor(String.class).newInstance(value));
         }
-
     }
 
     public <T> void deleteEntity(T item, Class<T> entity) {

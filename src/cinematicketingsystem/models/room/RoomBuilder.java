@@ -1,6 +1,7 @@
 package cinematicketingsystem.models.room;
 
 public final class RoomBuilder {
+
     private Integer id;
     private Integer screenSize;
     private String theaterType;
