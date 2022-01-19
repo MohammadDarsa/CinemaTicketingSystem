@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 public class RoomFlyweight {
 
+
     private HashMap<Integer,Room> map;
 
     public RoomFlyweight(){
@@ -16,4 +17,7 @@ public class RoomFlyweight {
         return map.get(id);
     }
 
+
 }
+
+

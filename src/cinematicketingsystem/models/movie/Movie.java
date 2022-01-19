@@ -33,9 +33,11 @@ public class Movie {
     @Col(name = "admin_id", insertIgnore = true, updateIgnore = true)
     private Integer adminId;
 
+    private MovieType movieType;
+
     public Movie() {
     }
-
+  
     public Movie(String name, String description, Timestamp screenPlayTimestamp, Double price, String language, Double rating, Timestamp length, Integer ticketsSold, String imagePath, Integer adminId) {
         this.name = name;
         this.description = description;
@@ -79,6 +81,14 @@ public class Movie {
     public Movie setName(String name) {
         this.name = name;
         return this;
+    }
+
+    public MovieType getMovieType() {
+        return movieType;
+    }
+
+    public void setMovieType(MovieType movieType) {
+        this.movieType = movieType;
     }
 
     public String getDescription() {
