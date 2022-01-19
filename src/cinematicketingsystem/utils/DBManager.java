@@ -9,7 +9,6 @@ import java.io.*;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.sql.*;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -199,12 +198,8 @@ public class DBManager {
                 if (col != null) {
                     String name = col.name();
                     try {
-                        String value = resultSet.getString(name);
-//                        System.out.println(resultSet.getObject(name).getClass());
-                        Class<?> type = field.getType();
-//                        System.out.println(type);
-//                        field.set(dto, type.getConstructor(String.class).newInstance(value));
-                        changeToObj(field, type, value, dto);
+                        Object value = resultSet.getObject(name);
+                        field.set(dto, value);
                     } catch (Exception e) {
 //                        e.printStackTrace();
                     }
