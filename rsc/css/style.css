@@ -21,8 +21,35 @@
     -fx-padding: 10px;
 }
 
+.button {
+    -fx-font-size: 18px;
+    -fx-text-fill: #fff;
+    -fx-font-family: 'Poppins';
+    -fx-background-color: #4838D1;
+    -fx-background-radius: 10px;
+}
+
+.button:pressed {
+    -fx-background-color: #694de7;
+}
+
+.text-field {
+    -fx-text-fill: #fff;
+    -fx-background-color: #1C1C4D;
+    -fx-background-radius: 10px;
+    -fx-prompt-text-fill: #6A6A8B;
+    -fx-font-size: 18px;
+}
+
 .sideNavComp:hover{
     -fx-background-color: #100A64;
+}
+
+.errorlabel {
+    -fx-font-family: Poppins;
+    -fx-font-size: 20px;
+    -fx-text-fill: #F77A55;
+    -fx-alignment: center;
 }
 
 .sideNavComp:pressed{

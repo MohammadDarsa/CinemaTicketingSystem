@@ -1,0 +1,200 @@
+@startuml
+
+/' diagram meta data start
+config=StructureConfiguration;
+{
+  "projectClassification": {
+    "searchMode": "OpenProject", // OpenProject, AllProjects
+    "includedProjects": "",
+    "pathEndKeywords": "*.impl",
+    "isClientPath": "",
+    "isClientName": "",
+    "isTestPath": "",
+    "isTestName": "",
+    "isMappingPath": "",
+    "isMappingName": "",
+    "isDataAccessPath": "",
+    "isDataAccessName": "",
+    "isDataStructurePath": "",
+    "isDataStructureName": "",
+    "isInterfaceStructuresPath": "",
+    "isInterfaceStructuresName": "",
+    "isEntryPointPath": "",
+    "isEntryPointName": ""
+  },
+  "graphRestriction": {
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "removeByInheritance": "", // inheritance/annotation based filtering is done in a second step
+    "removeByAnnotation": "",
+    "removeByClassPackage": "", // cleanup the graph after inheritance/annotation based filtering is done
+    "removeByClassName": "",
+    "cutMappings": false,
+    "cutEnum": true,
+    "cutTests": true,
+    "cutClient": true,
+    "cutDataAccess": false,
+    "cutInterfaceStructures": false,
+    "cutDataStructures": false,
+    "cutGetterAndSetter": true,
+    "cutConstructors": true
+  },
+  "graphTraversal": {
+    "forwardDepth": 3,
+    "backwardDepth": 3,
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "hideMappings": false,
+    "hideDataStructures": false,
+    "hidePrivateMethods": true,
+    "hideInterfaceCalls": true, // indirection: implementation -> interface (is hidden) -> implementation
+    "onlyShowApplicationEntryPoints": false // root node is included
+  },
+  "details": {
+    "aggregation": "GroupByClass", // ByClass, GroupByClass, None
+    "showClassGenericTypes": true,
+    "showMethods": true,
+    "showMethodParameterNames": true,
+    "showMethodParameterTypes": true,
+    "showMethodReturnType": true,
+    "showPackageLevels": 0,
+    "showDetailedClassStructure": true
+  },
+  "rootClass": "cinematicketingsystem.modules.login.LoginController"
+}
+diagram meta data end '/
+
+
+
+digraph g {
+    rankdir="TB"
+    splines=polyline
+    
+
+'nodes 
+DBManager1640219081[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)DBManager</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   connection: Connection [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   password: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   url: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   user: String [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >- changeToObj(field: Field, type: Class&lt;?&gt;, value: String, dto: T)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ countEntities(tableName: String, attributes: Attributes, joint: String, operator: String): int</TD></TR>
+<TR><TD ALIGN="LEFT" >- createConnection()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ deleteEntity(item: T, entity: Class&lt;T&gt;)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ deleteEntity(tableName: String, attributes: Attributes)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ deleteEntity(attributes: Attributes)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ deleteEntity(tableName: String, attributes: Attributes, joint: String, operator: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ deleteEntity(attributes: Attributes, joint: String, operator: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ executeCount(query: String): int</TD></TR>
+<TR><TD ALIGN="LEFT" >+ executeQuery(query: String, entity: Class&lt;T&gt;): List&lt;T&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ executeQueryFromFile(path: String, entity: Class&lt;T&gt;): List&lt;T&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ executeUpdate(query: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ file2String(path: String): String</TD></TR>
+<TR><TD ALIGN="LEFT" >+ insertEntity(item: T, entity: Class&lt;T&gt;)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ insertEntity(attributes: Attributes)</TD></TR>
+<TR><TD ALIGN="LEFT" >- map2dto(resultSet: ResultSet, entity: Class&lt;T&gt;): List&lt;T&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >- readFromInputStream(inputStream: InputStream): String</TD></TR>
+<TR><TD ALIGN="LEFT" >+ selectAll(entity: Class&lt;T&gt;): List&lt;T&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ selectAll(entity: Class&lt;T&gt;, attributes: Attributes): List&lt;T&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ selectAll(entity: Class&lt;T&gt;, attributes: Attributes, joint: String, operator: String): List&lt;T&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ updateEntity(item: T, entity: Class&lt;T&gt;)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ updateEntity(setValues: Attributes, attributes: Attributes, joint: String, operator: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ updateEntity(setValues: Attributes, attributes: Attributes)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+LoginController694700488[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)LoginController</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   errorMessage: Label [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   loginBtn: Button [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   loginService: LoginService [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   passwordText: PasswordField [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   usernameText: TextField [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ initialize(location: URL, resources: ResourceBundle)</TD></TR>
+<TR><TD ALIGN="LEFT" ># login(event: ActionEvent)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+LoginServiceExecutor274373230[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)LoginServiceExecutor</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   dbManager: DBManager [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   sceneManager: SceneManager [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ login(username: String, password: String)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+LoginServiceProxy274373230[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)LoginServiceProxy</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   loginServiceExecutor: LoginServiceExecutor [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ login(username: String, password: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >- validatePassword(password: String): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >- validateUsername(username: String): boolean</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+SceneManager1640219081[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)SceneManager</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   root: Parent [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   scene: Scene [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   stage: Stage [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ switchScene(event: Event, path: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ switchScene(event: Event, path: String, styleSheet: String)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+'edges    
+LoginController694700488 -> LoginServiceExecutor274373230[arrowhead=none, arrowtail=empty, dir=both];
+LoginController694700488 -> LoginServiceProxy274373230[arrowhead=none, arrowtail=empty, dir=both];
+LoginServiceExecutor274373230 -> DBManager1640219081[label="dbManager
+[0..1]"];
+LoginServiceExecutor274373230 -> SceneManager1640219081[label="sceneManager
+[0..1]"];
+LoginServiceProxy274373230 -> LoginServiceExecutor274373230[label="loginServiceExecutor
+[0..1]"];
+    
+}
+@enduml

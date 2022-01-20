@@ -1,0 +1,154 @@
+@startuml
+
+/' diagram meta data start
+config=StructureConfiguration;
+{
+  "projectClassification": {
+    "searchMode": "OpenProject", // OpenProject, AllProjects
+    "includedProjects": "",
+    "pathEndKeywords": "*.impl",
+    "isClientPath": "",
+    "isClientName": "",
+    "isTestPath": "",
+    "isTestName": "",
+    "isMappingPath": "",
+    "isMappingName": "",
+    "isDataAccessPath": "",
+    "isDataAccessName": "",
+    "isDataStructurePath": "",
+    "isDataStructureName": "",
+    "isInterfaceStructuresPath": "",
+    "isInterfaceStructuresName": "",
+    "isEntryPointPath": "",
+    "isEntryPointName": ""
+  },
+  "graphRestriction": {
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "removeByInheritance": "", // inheritance/annotation based filtering is done in a second step
+    "removeByAnnotation": "",
+    "removeByClassPackage": "", // cleanup the graph after inheritance/annotation based filtering is done
+    "removeByClassName": "",
+    "cutMappings": false,
+    "cutEnum": true,
+    "cutTests": true,
+    "cutClient": true,
+    "cutDataAccess": false,
+    "cutInterfaceStructures": false,
+    "cutDataStructures": false,
+    "cutGetterAndSetter": true,
+    "cutConstructors": true
+  },
+  "graphTraversal": {
+    "forwardDepth": 3,
+    "backwardDepth": 3,
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "hideMappings": false,
+    "hideDataStructures": false,
+    "hidePrivateMethods": true,
+    "hideInterfaceCalls": true, // indirection: implementation -> interface (is hidden) -> implementation
+    "onlyShowApplicationEntryPoints": false // root node is included
+  },
+  "details": {
+    "aggregation": "GroupByClass", // ByClass, GroupByClass, None
+    "showClassGenericTypes": true,
+    "showMethods": true,
+    "showMethodParameterNames": true,
+    "showMethodParameterTypes": true,
+    "showMethodReturnType": true,
+    "showPackageLevels": 0,
+    "showDetailedClassStructure": true
+  },
+  "rootClass": "cinematicketingsystem.modules.login.loginservice.LoginService"
+}
+diagram meta data end '/
+
+
+
+digraph g {
+    rankdir="TB"
+    splines=polyline
+    
+
+'nodes 
+LoginController694700488[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)LoginController</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   errorMessage: Label [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   loginBtn: Button [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   loginService: LoginService [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   passwordText: PasswordField [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   usernameText: TextField [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ initialize(location: URL, resources: ResourceBundle)</TD></TR>
+<TR><TD ALIGN="LEFT" ># login(event: ActionEvent)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+LoginService274373230[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(I)LoginService</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ login(username: String, password: String)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#F1E5FD"
+];
+
+LoginServiceExecutor274373230[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)LoginServiceExecutor</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   dbManager: DBManager [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   sceneManager: SceneManager [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ login(username: String, password: String)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+LoginServiceProxy274373230[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)LoginServiceProxy</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   loginServiceExecutor: LoginServiceExecutor [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ login(username: String, password: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >- validatePassword(password: String): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >- validateUsername(username: String): boolean</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+'edges    
+LoginController694700488 -> LoginService274373230[label="loginService
+[0..1]"];
+LoginService274373230 -> LoginServiceExecutor274373230[arrowhead=none, arrowtail=empty, dir=both];
+LoginService274373230 -> LoginServiceProxy274373230[arrowhead=none, arrowtail=empty, dir=both];
+LoginServiceProxy274373230 -> LoginServiceExecutor274373230[label="loginServiceExecutor
+[0..1]"];
+    
+}
+@enduml
