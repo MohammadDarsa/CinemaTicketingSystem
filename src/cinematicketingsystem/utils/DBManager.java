@@ -3,7 +3,7 @@ package cinematicketingsystem.utils;
 import cinematicketingsystem.annotations.Col;
 import cinematicketingsystem.annotations.ID;
 import cinematicketingsystem.annotations.Table;
-import cinematicketingsystem.exceptions.sqlExceptions.EntityNotFoundException;
+import cinematicketingsystem.exceptions.sqlexceptions.EntityNotFoundException;
 
 import java.io.*;
 import java.lang.reflect.Field;

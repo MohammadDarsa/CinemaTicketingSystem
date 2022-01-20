@@ -15,9 +15,11 @@ public class Demo extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        stage.setTitle("rin best girl <3");
+        stage.setTitle("GUI project");
         sceneManager.setStage(stage);
-        sceneManager.switchScene(null, "/view/test.fxml", "style.css");
+        sceneManager.switchScene(null, "/view/login.fxml", "style.css");
+
+        //TODO: ORM Relations
         dbManager.selectAll(Movie.class).forEach(System.out::println);
     }
 
