@@ -46,7 +46,7 @@
 }
 
 .errorlabel {
-    -fx-font-family: Poppins;
+    -fx-font-family: 'Poppins';
     -fx-font-size: 20px;
     -fx-text-fill: #F77A55;
     -fx-alignment: center;

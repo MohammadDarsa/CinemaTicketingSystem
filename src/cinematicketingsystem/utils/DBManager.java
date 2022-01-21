@@ -1,13 +1,14 @@
 package cinematicketingsystem.utils;
 
-import cinematicketingsystem.annotations.Col;
-import cinematicketingsystem.annotations.ID;
-import cinematicketingsystem.annotations.Table;
+import cinematicketingsystem.annotations.*;
 import cinematicketingsystem.exceptions.sqlexceptions.EntityNotFoundException;
+import cinematicketingsystem.models.user.admin.Admin;
 
 import java.io.*;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -192,8 +193,35 @@ public class DBManager {
                 e.printStackTrace();
             }
             for (Field field : fields) {
-                Col col = field.getAnnotation(Col.class);
-                if (col != null) {
+
+                if(field.isAnnotationPresent(OneToOne.class)) {
+                    OneToOne oneToOne = field.getAnnotation(OneToOne.class);
+                    try {
+                        Attributes attributes = new Attributes();
+                        String fkid = resultSet.getString(oneToOne.key());
+                        String colid = getIdNameFromType(field.getType());
+                        attributes.addAttribute(colid, fkid);
+                        field.set(dto, selectAll(field.getType(), attributes).get(0));
+                    } catch (Exception e) {
+//                        e.printStackTrace();
+                    }
+                }
+
+                if(field.isAnnotationPresent(OneToMany.class)) {
+                    OneToMany oneToMany = field.getAnnotation(OneToMany.class);
+                    try {
+                        Attributes attributes = new Attributes();
+                        String fkid = resultSet.getString(1);
+                        String colid = oneToMany.key();
+                        attributes.addAttribute(colid, fkid);
+                        field.set(dto, selectAll(getGenericType(field), attributes));
+                    } catch (Exception e) {
+//                        e.printStackTrace();
+                    }
+                }
+
+                if (field.isAnnotationPresent(Col.class)) {
+                    Col col = field.getAnnotation(Col.class);
                     String name = col.name();
                     try {
                         Object value = resultSet.getObject(name);
@@ -206,6 +234,15 @@ public class DBManager {
             list.add(dto);
         }
         return list;
+    }
+
+    private <T> String getIdFromType(Class<T> type, T dto) {
+        try {
+            return Arrays.stream(type.getDeclaredFields()).filter(field -> field.isAnnotationPresent(ID.class)).findAny().get().get(dto).toString();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     private <T> void changeToObj(Field field, Class<?> type, String value, T dto) throws Exception {
@@ -303,5 +340,19 @@ public class DBManager {
     public int countEntities(String tableName, Attributes attributes, String joint, String operator) {
         String check = "select count(*) from " + tableName + " where " + attributes.getString(joint, operator);
         return executeCount(check);
+    }
+
+    public <T> String getIdNameFromType(Class<T> type) {
+        return Arrays.stream(type.getDeclaredFields()).filter(field -> field.isAnnotationPresent(ID.class)).findAny().get().getAnnotation(Col.class).name();
+    }
+
+    public Class<?> getGenericType(Field field) {
+        Type genericFieldType = field.getGenericType();
+        if(genericFieldType instanceof ParameterizedType){
+            ParameterizedType aType = (ParameterizedType) genericFieldType;
+            Type[] fieldArgTypes = aType.getActualTypeArguments();
+            return (Class)fieldArgTypes[0];
+        }
+        return null;
     }
 }

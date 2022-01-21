@@ -2,6 +2,7 @@ package cinematicketingsystem;
 
 
 import cinematicketingsystem.models.movie.Movie;
+import cinematicketingsystem.models.room.Room;
 import cinematicketingsystem.utils.DBManager;
 import cinematicketingsystem.utils.SceneManager;
 import javafx.application.Application;
@@ -15,13 +16,15 @@ public class Demo extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        stage.setTitle("GUI project");
-        sceneManager.setStage(stage);
-        sceneManager.switchScene(null, "/view/login.fxml", "style.css");
+//        stage.setTitle("GUI project");
+//        sceneManager.setStage(stage);
+//        sceneManager.switchScene(null, "/view/login.fxml", "style.css");
 
         //TODO: ORM Relations
-        dbManager.selectAll(Movie.class).forEach(System.out::println);
+//        dbManager.selectAll(Movie.class).forEach(System.out::println);
+        dbManager.selectAll(Room.class).forEach(System.out::println);
     }
+
 
     public static void main(String[] args) {
         launch();

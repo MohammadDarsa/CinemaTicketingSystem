@@ -2,7 +2,9 @@ package cinematicketingsystem.models.movie;
 
 import cinematicketingsystem.annotations.Col;
 import cinematicketingsystem.annotations.ID;
+import cinematicketingsystem.annotations.OneToOne;
 import cinematicketingsystem.annotations.Table;
+import cinematicketingsystem.models.user.admin.Admin;
 
 import java.sql.Timestamp;
 import java.util.Objects;
@@ -30,14 +32,14 @@ public class Movie {
     private Integer ticketsSold;
     @Col(name = "image")
     private String imagePath;
-    @Col(name = "admin_id", insertIgnore = true, updateIgnore = true)
-    private Integer adminId;
+    @OneToOne(key = "admin_id")
+    private Admin admin;
 
 
     public Movie() {
     }
   
-    public Movie(String name, String description, Timestamp screenPlayTimestamp, Double price, String language, Double rating, Timestamp length, Integer ticketsSold, String imagePath, Integer adminId) {
+    public Movie(String name, String description, Timestamp screenPlayTimestamp, Double price, String language, Double rating, Timestamp length, Integer ticketsSold, String imagePath, Admin admin) {
         this.name = name;
         this.description = description;
         this.screenPlayTimestamp = screenPlayTimestamp;
@@ -47,10 +49,10 @@ public class Movie {
         this.length = length;
         this.ticketsSold = ticketsSold;
         this.imagePath = imagePath;
-        this.adminId = adminId;
+        this.admin = admin;
     }
 
-    public Movie(Integer id, String name, String description, Timestamp screenPlayTimestamp, Double price, String language, Double rating, Timestamp length, Integer ticketsSold, String imagePath, Integer adminId) {
+    public Movie(Integer id, String name, String description, Timestamp screenPlayTimestamp, Double price, String language, Double rating, Timestamp length, Integer ticketsSold, String imagePath, Admin admin) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -61,7 +63,7 @@ public class Movie {
         this.length = length;
         this.ticketsSold = ticketsSold;
         this.imagePath = imagePath;
-        this.adminId = adminId;
+        this.admin = admin;
     }
 
     public Integer getId() {
@@ -154,12 +156,12 @@ public class Movie {
         return this;
     }
 
-    public Integer getAdminId() {
-        return adminId;
+    public Admin getAdmin() {
+        return admin;
     }
 
-    public Movie setAdminId(Integer adminId) {
-        this.adminId = adminId;
+    public Movie setAdmin(Admin admin) {
+        this.admin = admin;
         return this;
     }
 
@@ -189,7 +191,7 @@ public class Movie {
                 ", length=" + length +
                 ", ticketsSold=" + ticketsSold +
                 ", imagePath='" + imagePath + '\'' +
-                ", adminId=" + adminId +
+                ", admin=" + admin +
                 '}';
     }
 }
