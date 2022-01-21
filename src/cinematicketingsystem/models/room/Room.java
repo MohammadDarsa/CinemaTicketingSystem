@@ -2,8 +2,11 @@ package cinematicketingsystem.models.room;
 
 import cinematicketingsystem.annotations.Col;
 import cinematicketingsystem.annotations.ID;
+import cinematicketingsystem.annotations.OneToMany;
 import cinematicketingsystem.annotations.Table;
+import cinematicketingsystem.models.seat.Seat;
 
+import java.util.List;
 import java.util.Objects;
 
 @Table(name = "room")
@@ -17,21 +20,25 @@ public class Room {
     private String theaterType;
     @Col(name = "number_seats")
     private Integer seatsNumber;
+    @OneToMany(key = "room_id")
+    private List<Seat> seats;
 
     public Room() {
     }
 
-    public Room(Integer screenSize, String theaterType, Integer seatsNumber) {
-        this.screenSize = screenSize;
-        this.theaterType = theaterType;
-        this.seatsNumber = seatsNumber;
-    }
-
-    public Room(Integer id, Integer screenSize, String theaterType, Integer seatsNumber) {
+    public Room(Integer id, Integer screenSize, String theaterType, Integer seatsNumber, List<Seat> seats) {
         this.id = id;
         this.screenSize = screenSize;
         this.theaterType = theaterType;
         this.seatsNumber = seatsNumber;
+        this.seats = seats;
+    }
+
+    public Room(Integer screenSize, String theaterType, Integer seatsNumber, List<Seat> seats) {
+        this.screenSize = screenSize;
+        this.theaterType = theaterType;
+        this.seatsNumber = seatsNumber;
+        this.seats = seats;
     }
 
     public Integer getId() {
@@ -70,6 +77,15 @@ public class Room {
         return this;
     }
 
+    public List<Seat> getSeats() {
+        return seats;
+    }
+
+    public Room setSeats(List<Seat> seats) {
+        this.seats = seats;
+        return this;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -90,6 +106,7 @@ public class Room {
                 ", screenSize=" + screenSize +
                 ", theaterType='" + theaterType + '\'' +
                 ", seatsNumber=" + seatsNumber +
+                ", seats=" + seats +
                 '}';
     }
 }
