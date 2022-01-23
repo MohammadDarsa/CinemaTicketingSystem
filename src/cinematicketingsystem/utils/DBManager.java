@@ -3,6 +3,7 @@ package cinematicketingsystem.utils;
 import cinematicketingsystem.annotations.*;
 import cinematicketingsystem.exceptions.sqlexceptions.EntityNotFoundException;
 import cinematicketingsystem.models.user.admin.Admin;
+import lombok.SneakyThrows;
 
 import java.io.*;
 import java.lang.reflect.Field;
@@ -18,12 +19,15 @@ import java.util.List;
 
 public class DBManager {
     private static DBManager instance;
-    private Connection connection;
-    private final String url = "jdbc:mysql://localhost:3306/mydb?characterEncoding=latin1&useConfigs=maxPerformance";
-    private final String user = "root";
-    private final String password = "kouti123";
+    private Connection connection = null;
+    private final String url = "jdbc:mysql://bw3uu6emf0jk4qraonoh-mysql.services.clever-cloud.com:3306/bw3uu6emf0jk4qraonoh?characterEncoding=latin1&useConfigs=maxPerformance";
+    private final String user = "udlz31um2uy8mvj1";
+    private final String password = "NPEAg9OPyT8t3bK8Lup3";
 
-    private DBManager() {}
+    @SneakyThrows
+    private DBManager() {
+        createConnection();
+    }
 
     public static DBManager getInstance() {
         if(instance == null) instance = new DBManager();
@@ -31,6 +35,7 @@ public class DBManager {
     }
 
     private void createConnection() throws ClassNotFoundException, SQLException {
+        if(connection != null) return;
         Class.forName("com.mysql.jdbc.Driver");
         connection = DriverManager.getConnection(url, user, password);
     }
@@ -40,7 +45,7 @@ public class DBManager {
             createConnection();
             Statement statement = connection.createStatement();
             statement.executeUpdate(query);
-            connection.close();
+//            connection.close();
         }catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
@@ -54,7 +59,7 @@ public class DBManager {
             Statement statement = connection.createStatement();
             resultSet = statement.executeQuery(query);
             list = map2dto(resultSet, entity);
-            connection.close();
+//            connection.close();
         }catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
@@ -140,7 +145,7 @@ public class DBManager {
                     ResultSet rs = statement.executeQuery(q);
                     rs.next();
                     isPresent = rs.getInt(1);
-                    connection.close();
+//                    connection.close();
                 }catch (ClassNotFoundException | SQLException e) {
                     e.printStackTrace();
                 }
@@ -330,7 +335,7 @@ public class DBManager {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
             num = resultSet.getInt(1);
-            connection.close();
+//            connection.close();
         }catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
@@ -354,5 +359,12 @@ public class DBManager {
             return (Class)fieldArgTypes[0];
         }
         return null;
+    }
+
+    @Override
+    protected void finalize() throws Throwable {
+        System.out.println("hello");
+        connection.close();
+        super.finalize();
     }
 }
