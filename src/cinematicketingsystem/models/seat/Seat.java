@@ -1,8 +1,7 @@
 package cinematicketingsystem.models.seat;
 
-import cinematicketingsystem.annotations.Col;
-import cinematicketingsystem.annotations.ID;
-import cinematicketingsystem.annotations.Table;
+import cinematicketingsystem.annotations.*;
+import cinematicketingsystem.models.room.Room;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -26,4 +25,6 @@ public class Seat {
     private Integer seatNumber;
     @Col(name = "row_num")
     private Integer rowNumber;
+    @ManyToOne(key = "room_id")
+    private Room room;
 }

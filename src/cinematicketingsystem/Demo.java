@@ -13,11 +13,12 @@ import cinematicketingsystem.utils.SceneManager;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
+import java.util.List;
+
 
 public class Demo extends Application {
     private final SceneManager sceneManager = SceneManager.getInstance();
     private final DBManager dbManager = DBManager.getInstance();
-
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -34,7 +35,6 @@ public class Demo extends Application {
         dbManager.selectAll(Room.class).forEach(System.out::println);
         dbManager.selectAll(Customer.class).forEach(System.out::println);
     }
-
 
     public static void main(String[] args) {
         launch();
