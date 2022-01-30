@@ -2,13 +2,16 @@ package cinematicketingsystem.models.user.admin;
 
 import cinematicketingsystem.annotations.Col;
 import cinematicketingsystem.annotations.ID;
+import cinematicketingsystem.annotations.OneToMany;
 import cinematicketingsystem.annotations.Table;
+import cinematicketingsystem.models.movie.Movie;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
+import java.util.List;
 import java.util.Objects;
 
 @Data
@@ -32,4 +35,7 @@ public class Admin {
     private String email;
     @Col(name  = "password")
     private String password;
+    @OneToMany(key = "admin_id")
+    private List<Movie> movieList;
+
 }

@@ -1,9 +1,7 @@
 package cinematicketingsystem.models.ticket;
 
-import cinematicketingsystem.annotations.Col;
-import cinematicketingsystem.annotations.ID;
-import cinematicketingsystem.annotations.OneToOne;
-import cinematicketingsystem.annotations.Table;
+
+import cinematicketingsystem.annotations.*;
 import cinematicketingsystem.models.movie.Movie;
 import cinematicketingsystem.models.seat.Seat;
 import cinematicketingsystem.models.user.customer.Customer;
@@ -28,10 +26,17 @@ public class Ticket {
     private Integer id;
     @Col(name  = "time_booked")
     private Timestamp timeBooked;
-    @OneToOne(key = "customer_id")
+    @Col(name = "customer_id")
+    private Integer customerId;
+    @Col(name = "movie_id")
+    private Integer movieId;
+    @Col(name = "seat_id")
+    private Integer seatId;
+
+    @ManyToOne(key = "customer_id")
     private Customer customer;
-    @OneToOne(key = "movie_id")
+    @ManyToOne(key = "movie_id")
     private Movie movie;
-    @OneToOne(key = "seat_id")
+    @ManyToOne(key = "seat_id")
     private Seat seat;
 }

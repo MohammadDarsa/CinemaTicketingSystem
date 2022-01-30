@@ -1,9 +1,7 @@
 package cinematicketingsystem.models.movie;
 
-import cinematicketingsystem.annotations.Col;
-import cinematicketingsystem.annotations.ID;
-import cinematicketingsystem.annotations.OneToOne;
-import cinematicketingsystem.annotations.Table;
+
+import cinematicketingsystem.annotations.*;
 import cinematicketingsystem.models.user.admin.Admin;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -45,6 +43,7 @@ public class Movie {
     private Integer ticketsSold;
     @Col(name = "image")
     private String imagePath;
-    @OneToOne(key = "admin_id")
-    private Admin admin;
+    @Col(name = "admin_id")
+    private Integer adminId;
+
 }
