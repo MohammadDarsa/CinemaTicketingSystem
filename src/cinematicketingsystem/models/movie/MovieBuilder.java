@@ -66,10 +66,7 @@ public final class MovieBuilder {
         return this;
     }
 
-    public MovieBuilder setAdmin(Admin admin) {
-        movie.setAdmin(admin);
-        return this;
-    }
+
 
     public Movie build() {
         return movie;

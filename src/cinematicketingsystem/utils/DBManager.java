@@ -43,15 +43,18 @@ public class DBManager {
         connection = DriverManager.getConnection(url2, user2, password2);
     }
 
-    public void executeUpdate(String query) {
+    public Integer executeUpdate(String query) {
         try {
             createConnection();
-            Statement statement = connection.createStatement();
-            statement.executeUpdate(query);
+            PreparedStatement statement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            statement.executeUpdate();
+            ResultSet rs = statement.getGeneratedKeys();
+            if(rs.next()) return rs.getInt(1);
 //            connection.close();
         }catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
+        return null;
     }
 
     public <T> List<T> executeQuery(String query, Class<T> entity) {
@@ -100,14 +103,17 @@ public class DBManager {
         items.forEach(item -> insertEntity(item, entity));
     }
 
+    @SneakyThrows
     public <T> void insertEntity(T item, Class<T> entity) {
         Field[] fields = entity.getDeclaredFields();
         List<Field> fieldList = new ArrayList<>();
         List<Field> oneToOneFields = new ArrayList<>();
         List<Field> manyToOneFields = new ArrayList<>();
         List<Field> oneToManyFields = new ArrayList<>();
+        Field idField = null;
         for (Field field : fields) {
             field.setAccessible(true);
+            if(field.isAnnotationPresent(ID.class)) idField = field;
             if(field.isAnnotationPresent(ManyToOne.class)) manyToOneFields.add(field);
             if(field.isAnnotationPresent(OneToOne.class)) oneToOneFields.add(field);
             if(field.isAnnotationPresent(OneToMany.class)) oneToManyFields.add(field);
@@ -116,8 +122,11 @@ public class DBManager {
             if(field.isAnnotationPresent(ID.class) || col == null || col.insertIgnore() == true) continue;
             fieldList.add(field);
         }
-
-
+        Attributes attributes = new Attributes();
+        String id = "-1";
+        if(idField.get(item) != null) id = idField.get(item).toString();
+        attributes.addAttribute(idField.getAnnotation(Col.class).name(), id);
+        if(countEntities(entity.getAnnotation(Table.class).name(), attributes, "and", "=") != 0) return;
 
         StringBuilder query = new StringBuilder("insert into " + entity.getAnnotation(Table.class).name() + " (");
         for(Field field:fieldList) {
@@ -144,34 +153,43 @@ public class DBManager {
             }
         }
 
-        for(Field field:manyToOneFields) {
-            try {
-                query.append("'").append(getIdFromType(field.get(item), field.getClass())).append("', ");
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
-            }
-        }
+//        for(Field field:manyToOneFields) {
+//            try {
+//                query.append("'").append(getIdFromType(field.get(item)).toString()).append("', ");
+//            } catch (IllegalAccessException e) {
+//                e.printStackTrace();
+//            }
+//        }
 
-        for(Field field:oneToOneFields) {
-            try {
-                query.append("'").append(getIdFromType(field.get(item), field.getClass())).append("', ");
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
-            }
-        }
+//        for(Field field:oneToOneFields) {
+//            try {
+//                query.append("'").append(getIdFromType(field.get(item))).append("', ");
+//            } catch (IllegalAccessException e) {
+//                e.printStackTrace();
+//            }
+//        }
+
         query = new StringBuilder(query.substring(0, query.length() - 2) + ")");
-        executeUpdate(query.toString());
+        idField.set(item, executeUpdate(query.toString()));
     }
 
-    private <T> String getIdFromType(Object item, Class<T> type) {
-        return Arrays.stream(item.getClass().getDeclaredFields()).peek(field -> field.setAccessible(true)).filter(field -> field.isAnnotationPresent(ID.class)).map(field -> {
-            try {
-                return field.get(item).toString();
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
+    private Integer getIdFromType(Object item) {
+        List<Field> fields = Arrays.asList(item.getClass().getDeclaredFields());
+        Field idField = null;
+        for(Field field:fields) {
+            field.setAccessible(true);
+            if(field.isAnnotationPresent(ID.class)) {
+                idField = field;
+                break;
             }
-            return null;
-        }).findFirst().get();
+        }
+        try {
+            if(idField.get(item) == null) return null;
+            return Integer.valueOf((Integer) idField.get(item));
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public <T> void updateEntity(T item, Class<T> entity) throws EntityNotFoundException {

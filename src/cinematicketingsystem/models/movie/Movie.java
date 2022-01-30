@@ -42,6 +42,6 @@ public class Movie {
     private Integer ticketsSold;
     @Col(name = "image")
     private String imagePath;
-    @ManyToOne(key = "admin_id")
-    private Admin admin;
+    @Col(name = "admin_id")
+    private Integer adminId;
 }

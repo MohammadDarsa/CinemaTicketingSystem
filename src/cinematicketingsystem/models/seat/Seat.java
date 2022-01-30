@@ -25,6 +25,6 @@ public class Seat {
     private Integer seatNumber;
     @Col(name = "row_num")
     private Integer rowNumber;
-    @ManyToOne(key = "room_id")
-    private Room room;
+    @Col(name = "room_id")
+    private Integer roomId;
 }
