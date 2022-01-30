@@ -37,4 +37,5 @@ public class Admin {
     private String password;
     @OneToMany(key = "admin_id")
     private List<Movie> movieList;
+
 }

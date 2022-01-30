@@ -66,8 +66,6 @@ public final class MovieBuilder {
         return this;
     }
 
-
-
     public Movie build() {
         return movie;
     }

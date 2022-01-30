@@ -2,6 +2,7 @@ package cinematicketingsystem.models.seat;
 
 import cinematicketingsystem.annotations.*;
 import cinematicketingsystem.models.room.Room;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

@@ -30,6 +30,7 @@ public class Demo extends Application {
         sceneManager.switchScene(null, "/view/login.fxml", "style.css");
     }
 
+
     public static void main(String[] args) {
         launch();
     }

@@ -270,6 +270,7 @@ public class DBManager {
             }
             for (Field field : fields) {
 
+
                 if(field.isAnnotationPresent(OneToOne.class) || field.isAnnotationPresent(ManyToOne.class)) {
                     OneToOne oneToOne = field.getAnnotation(OneToOne.class);
                     ManyToOne manyToOne = field.getAnnotation(ManyToOne.class);

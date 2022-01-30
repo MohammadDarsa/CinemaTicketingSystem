@@ -1,5 +1,6 @@
 package cinematicketingsystem.models.ticket;
 
+
 import cinematicketingsystem.annotations.*;
 import cinematicketingsystem.models.movie.Movie;
 import cinematicketingsystem.models.seat.Seat;

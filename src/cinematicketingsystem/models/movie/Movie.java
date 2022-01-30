@@ -1,5 +1,6 @@
 package cinematicketingsystem.models.movie;
 
+
 import cinematicketingsystem.annotations.*;
 import cinematicketingsystem.models.user.admin.Admin;
 import lombok.AllArgsConstructor;
@@ -44,4 +45,5 @@ public class Movie {
     private String imagePath;
     @Col(name = "admin_id")
     private Integer adminId;
+
 }
