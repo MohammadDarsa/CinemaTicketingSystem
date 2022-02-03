@@ -1,17 +1,15 @@
-package cinematicketingsystem.modules.test;
+package cinematicketingsystem.modules.movieselector;
 
 import cinematicketingsystem.models.movie.Movie;
-import cinematicketingsystem.modules.helloworld.HelloWorldController;
 import cinematicketingsystem.modules.moviecard.MovieCardController;
+import cinematicketingsystem.modules.sidenav.SideNavController;
 import cinematicketingsystem.utils.DBManager;
-import cinematicketingsystem.utils.UserManager;
+import cinematicketingsystem.utils.SceneManager;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.GridPane;
+import javafx.scene.layout.*;
 import lombok.SneakyThrows;
 
 import java.net.URL;
@@ -19,34 +17,47 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
-public class TestController implements Initializable {
+public class MovieSelectorController implements Initializable {
 
     @FXML
-    private HelloWorldController mainNav;
+    private BorderPane borderPane;
+
+    @FXML
+    private HBox homeBtn;
+
+    @FXML
+    private HBox moviesBtn;
+
+    @FXML
+    private HBox ticketsBtn;
+
+    @FXML
+    private HBox logoutBtn;
+
+    @FXML
+    private HBox topNav;
 
     @FXML
     private ScrollPane scrollPane;
-    private FlowPane flow;
-    private GridPane gridPane;
+
+    @FXML
+    private FlowPane flowPane;
+
 
     private DBManager dbManager;
-    private UserManager userManager;
-    private int row = 0;
-    private int column = 0;
+    private SceneManager sceneManager;
 
     private List<Movie> movieList;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        flow = new FlowPane();
-        gridPane = new GridPane();
-        scrollPane.setContent(gridPane);
-        scrollPane.setFitToHeight(true);
-        scrollPane.setFitToWidth(true);
         dbManager = DBManager.getInstance();
         movieList = dbManager.selectAll(Movie.class);
         movieList = movieList.stream().peek(this::addMovie).collect(Collectors.toList());
-
+        scrollPane.hbarPolicyProperty().setValue(ScrollPane.ScrollBarPolicy.NEVER);
+        scrollPane.vbarPolicyProperty().setValue(ScrollPane.ScrollBarPolicy.NEVER);
+        scrollPane.setFitToWidth(true);
+        scrollPane.setFitToHeight(true);
     }
 
     @SneakyThrows
@@ -56,10 +67,8 @@ public class TestController implements Initializable {
         AnchorPane anchorPane = fxmlLoader.load();
         MovieCardController movieCardController = fxmlLoader.getController();
         movieCardController.setData(movie);
-        gridPane.add(anchorPane, column++, row);
-        if(column >= 3) {
-            row++;
-            column%=3;
-        }
+        flowPane.getChildren().add(anchorPane);
     }
+
+
 }

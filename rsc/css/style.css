@@ -11,6 +11,30 @@
     -fx-background-color: #090638;
 }
 
+.card-main {
+    -fx-background-color: #090638;
+    -fx-background-radius: 10px;
+}
+
+.card-main:hover {
+    -fx-background-color: #100A64;
+}
+
+
+.card-title {
+    -fx-font-size: 18px;
+    -fx-text-fill: #fff;
+    -fx-font-family: 'Poppins';
+    -fx-alignment: center;
+}
+
+.card-desc {
+    -fx-font-size: 14px;
+    -fx-text-fill: #a9a9a9;
+    -fx-font-family: 'Poppins';
+    -fx-alignment: center;
+}
+
 .labelNav {
     -fx-font-size: 18px;
     -fx-text-fill: #fff;
@@ -33,6 +57,10 @@
     -fx-background-color: #694de7;
 }
 
+.flow-pane {
+    -fx-background-color: #060425;
+}
+
 .text-field {
     -fx-text-fill: #fff;
     -fx-background-color: #1C1C4D;
@@ -53,5 +81,9 @@
 }
 
 .sideNavComp:pressed{
+    -fx-background-color: #090638;
+}
+
+.top-nav {
     -fx-background-color: #090638;
 }

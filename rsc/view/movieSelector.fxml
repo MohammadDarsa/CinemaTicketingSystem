@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cinematicketingsystem.modules.movieselector.MovieSelectorController">
+   <left>
+      <VBox BorderPane.alignment="CENTER">
+         <children>
+            <fx:include fx:id="sideeNav" source="sideNav.fxml" VBox.vgrow="ALWAYS" />
+         </children>
+      </VBox>
+   </left>
+   <top>
+      <HBox fx:id="topNav" prefHeight="50.0" styleClass="top-nav" stylesheets="@../css/style.css" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" prefHeight="50.0" prefWidth="1208.0" styleClass="labelNav" stylesheets="@../css/style.css" text="Select A Movie" textAlignment="CENTER" />
+         </children>
+      </HBox>
+   </top>
+   <center>
+      <ScrollPane fx:id="scrollPane" pannable="true" styleClass="flow-pane" stylesheets="@../css/style.css" BorderPane.alignment="CENTER">
+         <content>
+            <FlowPane fx:id="flowPane" disable="true" hgap="10.0" rowValignment="TOP" styleClass="flow-pane" stylesheets="@../css/style.css" vgap="10.0">
+               <padding>
+                  <Insets left="10.0" top="10.0" />
+               </padding>
+            </FlowPane>
+         </content>
+      </ScrollPane>
+   </center>
+</BorderPane>

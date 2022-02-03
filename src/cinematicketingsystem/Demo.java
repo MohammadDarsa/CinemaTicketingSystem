@@ -27,7 +27,7 @@ public class Demo extends Application {
     public void start(Stage stage) throws Exception {
         stage.setTitle("GUI project");
         sceneManager.setStage(stage);
-        sceneManager.switchScene(null, "/view/login.fxml", "style.css");
+        sceneManager.switchScene(null, "/view/movieSelector.fxml", "style.css");
     }
 
 
