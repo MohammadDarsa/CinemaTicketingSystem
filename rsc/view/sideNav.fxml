@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox fx:id="sideNav" spacing="10.0" styleClass="nav" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cinematicketingsystem.modules.sidenav.SideNavController">
+   <children>
+      <HBox fx:id="homeBtn" onMouseClicked="#homeClick" prefHeight="40.0" prefWidth="200.0" styleClass="sideNavComp" stylesheets="@../css/style.css">
+         <children>
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" styleClass="imgNav">
+               <image>
+                  <Image url="@../icons/Home.png" />
+               </image>
+               <HBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </HBox.margin>
+            </ImageView>
+            <Label contentDisplay="RIGHT" prefHeight="40.0" prefWidth="160.0" styleClass="labelNav" stylesheets="@../css/style.css" text="Home" />
+         </children>
+      </HBox>
+      <HBox fx:id="moviesBtn" onMouseClicked="#moviesClicked" prefHeight="40.0" prefWidth="200.0" styleClass="sideNavComp" stylesheets="@../css/style.css">
+         <children>
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" styleClass="imgNav">
+               <image>
+                  <Image url="@../icons/Video.png" />
+               </image>
+               <HBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </HBox.margin>
+            </ImageView>
+            <Label contentDisplay="RIGHT" prefHeight="40.0" prefWidth="160.0" styleClass="labelNav" stylesheets="@../css/style.css" text="Movies" />
+         </children>
+      </HBox>
+      <HBox fx:id="ticketsBtn" onMouseClicked="#ticketsClicked" prefHeight="40.0" prefWidth="200.0" styleClass="sideNavComp" stylesheets="@../css/style.css">
+         <children>
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" styleClass="imgNav">
+               <image>
+                  <Image url="@../icons/Ticket.png" />
+               </image>
+               <HBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </HBox.margin>
+            </ImageView>
+            <Label contentDisplay="RIGHT" prefHeight="40.0" prefWidth="160.0" styleClass="labelNav" stylesheets="@../css/style.css" text="Tickets" />
+         </children>
+      </HBox>
+      <HBox fx:id="logoutBtn" onMouseClicked="#logoutClicked" prefHeight="40.0" prefWidth="200.0" styleClass="sideNavComp" stylesheets="@../css/style.css">
+         <children>
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" styleClass="imgNav">
+               <image>
+                  <Image url="@../icons/Logout.png" />
+               </image>
+               <HBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </HBox.margin>
+            </ImageView>
+            <Label contentDisplay="RIGHT" prefHeight="40.0" prefWidth="160.0" styleClass="labelNav" stylesheets="@../css/style.css" text="Logout" />
+         </children>
+      </HBox>
+   </children>
+   <padding>
+      <Insets top="60.0" />
+   </padding>
+   <opaqueInsets>
+      <Insets />
+   </opaqueInsets>
+</VBox>

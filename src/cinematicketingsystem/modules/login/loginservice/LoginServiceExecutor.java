@@ -22,7 +22,7 @@ public class LoginServiceExecutor implements LoginService {
         Optional<Customer> customer = dbManager.selectAll(Customer.class).stream().filter(user -> user.getName().equals(username) && user.getPassword().equals(password)).findAny();
         if(customer.isPresent()) {
             try {
-                sceneManager.switchScene(null , "/view/test.fxml");
+                sceneManager.switchScene(null , "/view/movieSelector.fxml");
             } catch (IOException e) {
                 e.printStackTrace();
             }
