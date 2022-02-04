@@ -1,6 +1,7 @@
 package cinematicketingsystem.modules.moviecard;
 
 import cinematicketingsystem.models.movie.Movie;
+import cinematicketingsystem.utils.DBManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -32,12 +33,12 @@ public class MovieCardController implements Initializable {
     @FXML
     private Label price;
 
+    private DBManager dbManager;
+
     @FXML
-    void bookTicket(ActionEvent event) {
-
+    public void bookTicket(ActionEvent event) {
+        System.out.println("Hellooo");
     }
-
-
 
     public void setData(Movie movie) {
         Image image1 = new Image(movie.getImagePath());
@@ -46,13 +47,10 @@ public class MovieCardController implements Initializable {
         desc.setText(movie.getDescription());
         time.setText("Start: " + movie.getScreenPlayTime() + "\n length: " + movie.getLength());
         price.setText("Price: " + movie.getPrice() + " USD");
-
     }
-
-
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        dbManager = DBManager.getInstance();
     }
 }

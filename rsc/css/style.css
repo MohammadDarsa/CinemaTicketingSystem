@@ -87,3 +87,17 @@
 .top-nav {
     -fx-background-color: #090638;
 }
+
+.menu-button {
+    -fx-highlight-text-fill: #ffffff;
+    -fx-background-color: #090638;
+    -fx-font-family: 'Poppins';
+    -fx-font-size: 20px;
+    -fx-text-fill: #ffffff;
+    -fx-prompt-text-fill: #ffffff;
+
+}
+
+.menu-button:hover {
+    -fx-fill: #100A64;
+}

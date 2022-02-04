@@ -2,16 +2,24 @@ package cinematicketingsystem.modules.movieselector;
 
 import cinematicketingsystem.models.movie.Movie;
 import cinematicketingsystem.modules.moviecard.MovieCardController;
-import cinematicketingsystem.modules.sidenav.SideNavController;
+import cinematicketingsystem.modules.movieselector.sortstrat.NameSort;
+import cinematicketingsystem.modules.movieselector.sortstrat.PriceSort;
+import cinematicketingsystem.modules.movieselector.sortstrat.SortMovieService;
 import cinematicketingsystem.utils.DBManager;
 import cinematicketingsystem.utils.SceneManager;
+import cinematicketingsystem.utils.UserManager;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
+import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
 import lombok.SneakyThrows;
 
+import javax.swing.*;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -23,18 +31,6 @@ public class MovieSelectorController implements Initializable {
     private BorderPane borderPane;
 
     @FXML
-    private HBox homeBtn;
-
-    @FXML
-    private HBox moviesBtn;
-
-    @FXML
-    private HBox ticketsBtn;
-
-    @FXML
-    private HBox logoutBtn;
-
-    @FXML
     private HBox topNav;
 
     @FXML
@@ -43,15 +39,38 @@ public class MovieSelectorController implements Initializable {
     @FXML
     private FlowPane flowPane;
 
-
     private DBManager dbManager;
     private SceneManager sceneManager;
+    private UserManager userManager;
 
     private List<Movie> movieList;
+    private SortMovieService sortMovieService;
+
+    @FXML
+    public void priceSort(ActionEvent event) {
+        sortMovieService.setMovieSort(new PriceSort());
+        sortMovieService.sort(movieList);
+        fillFlow();
+    }
+
+    @FXML
+    public void nameSort(ActionEvent event) {
+        sortMovieService.setMovieSort(new NameSort());
+        sortMovieService.sort(movieList);
+        fillFlow();
+    }
+
+    private void fillFlow() {
+        flowPane.getChildren().remove(0, flowPane.getChildren().size());
+        movieList = movieList.stream().peek(this::addMovie).collect(Collectors.toList());
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        flowPane.setFocusTraversable(true);
+        sortMovieService = new SortMovieService();
         dbManager = DBManager.getInstance();
+        userManager = UserManager.getInstance();
         movieList = dbManager.selectAll(Movie.class);
         movieList = movieList.stream().peek(this::addMovie).collect(Collectors.toList());
         scrollPane.hbarPolicyProperty().setValue(ScrollPane.ScrollBarPolicy.NEVER);
@@ -64,11 +83,12 @@ public class MovieSelectorController implements Initializable {
     private void addMovie(Movie movie) {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource("/view/movieCard.fxml"));
-        AnchorPane anchorPane = fxmlLoader.load();
+        VBox anchorPane = fxmlLoader.load();
+//        Button button = new Button("hello");
+//        button.setOnAction(event -> System.out.println("hello"));
+//        anchorPane.getChildren().add(button);
         MovieCardController movieCardController = fxmlLoader.getController();
         movieCardController.setData(movie);
         flowPane.getChildren().add(anchorPane);
     }
-
-
 }

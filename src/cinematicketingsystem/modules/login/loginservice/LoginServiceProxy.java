@@ -3,6 +3,7 @@ package cinematicketingsystem.modules.login.loginservice;
 import cinematicketingsystem.exceptions.loginexceptions.PasswordRegexException;
 import cinematicketingsystem.exceptions.loginexceptions.UserNotFoundException;
 import cinematicketingsystem.exceptions.loginexceptions.UsernameRegexException;
+import cinematicketingsystem.models.user.customer.Customer;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -26,10 +27,10 @@ public class LoginServiceProxy implements LoginService{
 
 
     @Override
-    public void login(String username, String password) throws UserNotFoundException, UsernameRegexException, PasswordRegexException {
+    public Customer login(String username, String password) throws UserNotFoundException, UsernameRegexException, PasswordRegexException {
         if(!validateUsername(username)) throw new UsernameRegexException("Username doesn't follow the pattern try again!");
         if(!validatePassword(password)) throw new PasswordRegexException("Password doesn't follow the pattern try again!");
-        loginServiceExecutor.login(username, password);
+        return loginServiceExecutor.login(username, password);
     }
 
     private boolean validatePassword(String password) {
