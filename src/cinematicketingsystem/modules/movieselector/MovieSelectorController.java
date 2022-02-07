@@ -14,12 +14,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import lombok.SneakyThrows;
 
-import javax.swing.*;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -83,12 +84,58 @@ public class MovieSelectorController implements Initializable {
     private void addMovie(Movie movie) {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource("/view/movieCard.fxml"));
+//        VBox anchorPane = createMovieCard(movie);
         VBox anchorPane = fxmlLoader.load();
-//        Button button = new Button("hello");
-//        button.setOnAction(event -> System.out.println("hello"));
-//        anchorPane.getChildren().add(button);
         MovieCardController movieCardController = fxmlLoader.getController();
         movieCardController.setData(movie);
         flowPane.getChildren().add(anchorPane);
+    }
+
+    private VBox createMovieCard(Movie movie) {
+        VBox vBox = new VBox();
+        vBox.setAlignment(Pos.CENTER);
+        vBox.setStyle("/css/style.css");
+        vBox.getStyleClass().add("card-main");
+        vBox.setSpacing(10);
+
+        ImageView imageView = new ImageView();
+        imageView.setPreserveRatio(false);
+        imageView.setFitHeight(300);
+        imageView.setFitWidth(200);
+        vBox.getChildren().add(imageView);
+
+        Label title = new Label();
+        title.setStyle("/css/style.css");
+        title.getStyleClass().add("card-title");
+        vBox.getChildren().add(title);
+
+        Label desc = new Label();
+        desc.setStyle("/css/style.css");
+        desc.getStyleClass().add("card-desc");
+        vBox.getChildren().add(desc);
+
+        Label time = new Label();
+        time.setStyle("/css/style.css");
+        time.getStyleClass().add("card-desc");
+        vBox.getChildren().add(time);
+
+        Label price = new Label();
+        price.setStyle("/css/style.css");
+        price.getStyleClass().add("card-desc");
+        vBox.getChildren().add(price);
+
+        Image image1 = new Image(movie.getImagePath());
+        imageView.setImage(image1);
+        title.setText(movie.getName());
+        desc.setText(movie.getDescription());
+        time.setText("Start: " + movie.getScreenPlayTime() + "\n length: " + movie.getLength());
+        price.setText("Price: " + movie.getPrice() + " USD");
+
+        Button button = new Button("hello");
+        button.setStyle("/css/style.css");
+        button.setOnAction(event -> System.out.println("hello"));
+        vBox.getChildren().add(button);
+
+        return vBox;
     }
 }

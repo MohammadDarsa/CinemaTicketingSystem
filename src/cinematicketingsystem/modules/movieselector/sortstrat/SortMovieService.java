@@ -15,6 +15,5 @@ public class SortMovieService {
 
     public void sort(List<Movie> movieList) {
         movieSort.sort(movieList);
-
     }
 }

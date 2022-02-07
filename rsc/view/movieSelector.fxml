@@ -42,9 +42,9 @@
       </HBox>
    </top>
    <center>
-      <ScrollPane fx:id="scrollPane" pannable="true" styleClass="flow-pane" stylesheets="@../css/style.css" BorderPane.alignment="CENTER">
+      <ScrollPane fx:id="scrollPane" fitToHeight="true" fitToWidth="true" pannable="true" styleClass="flow-pane" stylesheets="@../css/style.css">
          <content>
-            <FlowPane fx:id="flowPane" depthTest="ENABLE" disable="true" hgap="10.0" rowValignment="TOP" styleClass="flow-pane" stylesheets="@../css/style.css" vgap="10.0">
+            <FlowPane fx:id="flowPane" hgap="10.0" styleClass="flow-pane" vgap="10.0">
                <padding>
                   <Insets left="10.0" top="10.0" />
                </padding>
