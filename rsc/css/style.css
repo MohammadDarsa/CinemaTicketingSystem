@@ -95,7 +95,15 @@
     -fx-font-size: 20px;
     -fx-text-fill: #ffffff;
     -fx-prompt-text-fill: #ffffff;
+}
 
+
+.label {
+    -fx-font-family: 'Poppins';
+    -fx-font-size: 20px;
+    -fx-text-fill: #ffffff;
+    -fx-alignment: center;
+    -fx-text-alignment: center;
 }
 
 .menu-button:hover {

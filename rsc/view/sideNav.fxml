@@ -13,13 +13,13 @@
          <children>
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" styleClass="imgNav">
                <image>
-                  <Image url="@../icons/Home.png" />
+                  <Image url="@../icons/avatar.png" />
                </image>
                <HBox.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </HBox.margin>
             </ImageView>
-            <Label contentDisplay="RIGHT" prefHeight="40.0" prefWidth="160.0" styleClass="labelNav" stylesheets="@../css/style.css" text="Home" />
+            <Label contentDisplay="RIGHT" prefHeight="40.0" prefWidth="160.0" styleClass="labelNav" stylesheets="@../css/style.css" text="Profile" />
          </children>
       </HBox>
       <HBox fx:id="moviesBtn" onMouseClicked="#moviesClicked" prefHeight="40.0" prefWidth="200.0" styleClass="sideNavComp" stylesheets="@../css/style.css">

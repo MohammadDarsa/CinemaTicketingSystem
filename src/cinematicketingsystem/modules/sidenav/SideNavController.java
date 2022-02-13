@@ -37,7 +37,7 @@ public class SideNavController implements Initializable {
     @FXML
     @SneakyThrows
     void homeClick(MouseEvent event) {
-        sceneManager.switchScene(event, "/view/home.fxml", "style.css");
+        sceneManager.switchScene(event, "/view/user.fxml", "style.css");
     }
 
     @FXML
@@ -55,7 +55,7 @@ public class SideNavController implements Initializable {
     @FXML
     @SneakyThrows
     public void ticketsClicked(MouseEvent event) {
-        sceneManager.switchScene(event, "/view/tickets.fxml");
+        sceneManager.switchScene(event, "/view/ticketSelector.fxml");
     }
 
 }

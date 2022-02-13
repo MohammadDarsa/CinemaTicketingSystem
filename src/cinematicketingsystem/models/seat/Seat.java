@@ -28,4 +28,6 @@ public class Seat {
     private Integer rowNumber;
     @Col(name = "room_id")
     private Integer roomId;
+    @Col(name = "taken")
+    private Integer taken;
 }

@@ -1,22 +1,20 @@
-package cinematicketingsystem.modules.moviecard;
+package cinematicketingsystem.modules.ticketcard;
 
 import cinematicketingsystem.models.movie.Movie;
+import cinematicketingsystem.models.ticket.Ticket;
 import cinematicketingsystem.utils.DBManager;
 import cinematicketingsystem.utils.SceneManager;
 import cinematicketingsystem.utils.UserManager;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class MovieCardController implements Initializable {
+public class TicketCardController implements Initializable {
 
     @FXML
     private ImageView image;
@@ -25,40 +23,37 @@ public class MovieCardController implements Initializable {
     private Label title;
 
     @FXML
-    private Label desc;
-
-    @FXML
-    private Button btn;
-
-    @FXML
     private Label time;
 
     @FXML
     private Label price;
 
+    @FXML
+    private Label timeBooked;
+
+    @FXML
+    private Label seat;
+
+    @FXML
+    private Label room;
+
     private DBManager dbManager;
     private Movie movie;
+    private Ticket ticket;
     private UserManager userManager;
     private SceneManager sceneManager;
 
-    @FXML
-    public void bookTicket(ActionEvent event) {
-        //TODO: implement this shit
-        try {
-            sceneManager.createConfirmationPopup("/view/confirmation.fxml", movie);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void setData(Movie movie) {
-        this.movie = movie;
+    public void setData(Ticket ticket) {
+        this.movie = ticket.getMovie();
+        this.ticket = ticket;
         Image image1 = new Image(movie.getImagePath());
         image.setImage(image1);
         title.setText(movie.getName());
-        desc.setText(movie.getDescription());
         time.setText("Start: " + movie.getScreenPlayTime() + "\n length: " + movie.getLength());
         price.setText("Price: " + movie.getPrice() + " USD");
+        timeBooked.setText("Time Booked: " + ticket.getTimeBooked().toString());
+        seat.setText("Seat: " + ticket.getSeat().getId().toString());
+        room.setText("Room: " + ticket.getSeat().getRoomId().toString());
     }
 
     @Override
@@ -67,4 +62,5 @@ public class MovieCardController implements Initializable {
         sceneManager = SceneManager.getInstance();
         userManager = UserManager.getInstance();
     }
+
 }

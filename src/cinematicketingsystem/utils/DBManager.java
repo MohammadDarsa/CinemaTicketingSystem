@@ -40,7 +40,7 @@ public class DBManager {
     private void createConnection() throws ClassNotFoundException, SQLException {
         if(connection != null) return;
         Class.forName("com.mysql.jdbc.Driver");
-        connection = DriverManager.getConnection(url, user, password);
+        connection = DriverManager.getConnection(url2, user2, password2);
     }
 
     public Integer executeUpdate(String query) {
@@ -55,6 +55,17 @@ public class DBManager {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public void executeUpdateQuery(String query) {
+        try {
+            createConnection();
+            Statement statement = connection.createStatement();
+            statement.executeUpdate(query);
+//            connection.close();
+        }catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public <T> List<T> executeQuery(String query, Class<T> entity) {
@@ -392,9 +403,9 @@ public class DBManager {
     }
 
     public void updateEntity(Attributes setValues, Attributes attributes, String joint, String operator) throws EntityNotFoundException {
-        if(countEntities(setValues.getTableName(), attributes, joint, operator) <= 0) throw new EntityNotFoundException("Entity not found");
+//        if(countEntities(setValues.getTableName(), attributes, joint, operator) <= 0) throw new EntityNotFoundException("Entity not found");
         String s = "update " + setValues.getTableName() + " set " + setValues.getString(",", "=") + " where " + attributes.getString(joint, operator);
-        executeUpdate(s);
+        executeUpdateQuery(s);
     }
     public void updateEntity(Attributes setValues, Attributes attributes) throws EntityNotFoundException {
         updateEntity(setValues, attributes, "and", "=");
@@ -443,5 +454,53 @@ public class DBManager {
         System.out.println("hello");
         connection.close();
         super.finalize();
+    }
+
+    public int getEmptySeatFromMovie(int movieId) {
+        ResultSet resultSet = null;
+        int id = -1;
+        try {
+            createConnection();
+            CallableStatement cstmt = connection.prepareCall("{? = call selectSeatFromMovie(?)}");
+            cstmt.registerOutParameter(1, Types.INTEGER);
+            cstmt.setInt(2, movieId);
+            cstmt.execute();
+            id = cstmt.getInt(1);
+//            connection.close();
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        }
+        return id;
+    }
+
+    public int getRoomFromMovie(int movieId) {
+        ResultSet resultSet = null;
+        int id = -1;
+        try {
+            createConnection();
+            CallableStatement cstmt = connection.prepareCall("{? = call selectRoomFromMovie(?)}");
+            cstmt.registerOutParameter(1, Types.INTEGER);
+            cstmt.setInt(2, movieId);
+            cstmt.execute();
+            id = cstmt.getInt(1);
+//            connection.close();
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        }
+        return id;
+    }
+
+    public void buyTicket(int movieid, int customerid, int seatid) {
+        try {
+            createConnection();
+            CallableStatement cstmt = connection.prepareCall("{call buyticket(?, ?, ?)}");
+            cstmt.setInt(1, customerid);
+            cstmt.setInt(2, movieid);
+            cstmt.setInt(3, seatid);
+            cstmt.execute();
+//            connection.close();
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
