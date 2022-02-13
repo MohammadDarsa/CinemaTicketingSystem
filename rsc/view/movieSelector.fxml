@@ -45,6 +45,7 @@
       <ScrollPane fx:id="scrollPane" fitToHeight="true" fitToWidth="true" pannable="true" styleClass="flow-pane" stylesheets="@../css/style.css">
          <content>
             <FlowPane fx:id="flowPane" hgap="10.0" styleClass="flow-pane" vgap="10.0">
+
                <padding>
                   <Insets left="10.0" top="10.0" />
                </padding>

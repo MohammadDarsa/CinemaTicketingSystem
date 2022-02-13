@@ -2,6 +2,7 @@ package cinematicketingsystem.modules.movieselector;
 
 import cinematicketingsystem.models.movie.Movie;
 import cinematicketingsystem.modules.moviecard.MovieCardController;
+
 import cinematicketingsystem.modules.movieselector.sortstrat.NameSort;
 import cinematicketingsystem.modules.movieselector.sortstrat.PriceSort;
 import cinematicketingsystem.modules.movieselector.sortstrat.SortMovieService;
@@ -18,6 +19,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+
 import javafx.scene.layout.*;
 import lombok.SneakyThrows;
 
@@ -39,6 +41,7 @@ public class MovieSelectorController implements Initializable {
 
     @FXML
     private FlowPane flowPane;
+
 
     private DBManager dbManager;
     private SceneManager sceneManager;
@@ -84,58 +87,9 @@ public class MovieSelectorController implements Initializable {
     private void addMovie(Movie movie) {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource("/view/movieCard.fxml"));
-//        VBox anchorPane = createMovieCard(movie);
         VBox anchorPane = fxmlLoader.load();
         MovieCardController movieCardController = fxmlLoader.getController();
         movieCardController.setData(movie);
         flowPane.getChildren().add(anchorPane);
-    }
-
-    private VBox createMovieCard(Movie movie) {
-        VBox vBox = new VBox();
-        vBox.setAlignment(Pos.CENTER);
-        vBox.setStyle("/css/style.css");
-        vBox.getStyleClass().add("card-main");
-        vBox.setSpacing(10);
-
-        ImageView imageView = new ImageView();
-        imageView.setPreserveRatio(false);
-        imageView.setFitHeight(300);
-        imageView.setFitWidth(200);
-        vBox.getChildren().add(imageView);
-
-        Label title = new Label();
-        title.setStyle("/css/style.css");
-        title.getStyleClass().add("card-title");
-        vBox.getChildren().add(title);
-
-        Label desc = new Label();
-        desc.setStyle("/css/style.css");
-        desc.getStyleClass().add("card-desc");
-        vBox.getChildren().add(desc);
-
-        Label time = new Label();
-        time.setStyle("/css/style.css");
-        time.getStyleClass().add("card-desc");
-        vBox.getChildren().add(time);
-
-        Label price = new Label();
-        price.setStyle("/css/style.css");
-        price.getStyleClass().add("card-desc");
-        vBox.getChildren().add(price);
-
-        Image image1 = new Image(movie.getImagePath());
-        imageView.setImage(image1);
-        title.setText(movie.getName());
-        desc.setText(movie.getDescription());
-        time.setText("Start: " + movie.getScreenPlayTime() + "\n length: " + movie.getLength());
-        price.setText("Price: " + movie.getPrice() + " USD");
-
-        Button button = new Button("hello");
-        button.setStyle("/css/style.css");
-        button.setOnAction(event -> System.out.println("hello"));
-        vBox.getChildren().add(button);
-
-        return vBox;
     }
 }
