@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="CENTER" maxWidth="300.0" styleClass="card-main" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cinematicketsystem.modules.ticketcard.TicketCardController">
+   <children>
+      <ImageView fx:id="image" fitHeight="350.0" fitWidth="300.0" pickOnBounds="true">
+         <image>
+            <Image url="@../../../../../../../SilentVoice.jpg" />
+         </image>
+      </ImageView>
+      <Label fx:id="title" maxWidth="300.0" styleClass="card-title" stylesheets="@../css/style.css" text="A Silent Voice" textAlignment="CENTER" wrapText="true" />
+      <Label fx:id="time" maxWidth="300.0" styleClass="card-desc" text="from: 2021-10-11 15:00:00 till 2021-10-11 15:00:00" textAlignment="CENTER" wrapText="true" />
+      <Label fx:id="price" maxWidth="300.0" styleClass="card-desc" text="Price: 10$" textAlignment="CENTER" wrapText="true" />
+      <Label fx:id="timeBooked" maxWidth="300.0" styleClass="card-desc" text="time booked: bla bla" textAlignment="CENTER" wrapText="true" />
+      <Label fx:id="seat" maxWidth="300.0" styleClass="card-desc" text="seat: bla bla" textAlignment="CENTER" wrapText="true" />
+      <Label fx:id="room" maxWidth="300.0" styleClass="card-desc" text="room: lmao" textAlignment="CENTER" wrapText="true" />
+   </children>
+</VBox>

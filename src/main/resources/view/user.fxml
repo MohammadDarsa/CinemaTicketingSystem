@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" styleClass="nav" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cinematicketsystem.modules.user.UserController">
+   <left>
+         <fx:include fx:id="sideeNav" source="sideNav.fxml" VBox.vgrow="ALWAYS" />
+   </left>
+   <center>
+      <HBox alignment="CENTER" spacing="150.0" styleClass="flow-pane" BorderPane.alignment="CENTER">
+         <children>
+            <VBox alignment="CENTER_RIGHT" fillWidth="false" spacing="50.0">
+               <children>
+                  <HBox alignment="TOP_CENTER" spacing="40.0">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" text="User Name" textAlignment="CENTER" HBox.hgrow="ALWAYS" />
+                        <TextField fx:id="userName" alignment="TOP_CENTER" HBox.hgrow="ALWAYS" />
+                     </children>
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox alignment="TOP_CENTER" spacing="40.0">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" text="Email" textAlignment="CENTER" HBox.hgrow="ALWAYS" />
+                        <TextField fx:id="email" alignment="TOP_CENTER" HBox.hgrow="ALWAYS" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="TOP_CENTER" spacing="40.0">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" text="Phone" textAlignment="CENTER" HBox.hgrow="ALWAYS" />
+                        <TextField fx:id="phone" alignment="TOP_CENTER" HBox.hgrow="ALWAYS" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="TOP_CENTER" spacing="40.0">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" text="Balance" textAlignment="CENTER" HBox.hgrow="ALWAYS" />
+                        <TextField fx:id="balance" alignment="TOP_CENTER" editable="false" HBox.hgrow="ALWAYS" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="TOP_CENTER" spacing="40.0">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" text="Tickets Bought" textAlignment="CENTER" HBox.hgrow="ALWAYS" />
+                        <TextField fx:id="tickets" alignment="TOP_CENTER" editable="false" HBox.hgrow="ALWAYS" />
+                     </children>
+                  </HBox>
+                  <Button fx:id="updateBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#update" prefHeight="50.0" prefWidth="400.0" text="Update Profile" textAlignment="CENTER" />
+               </children>
+            </VBox>
+            <ImageView fitHeight="320.0" fitWidth="256.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icons/avatar.png" />
+               </image>
+            </ImageView>
+         </children>
+      </HBox>
+   </center>
+   <top>
+      <AnchorPane BorderPane.alignment="CENTER">
+         <children>
+            <Label prefHeight="50.0" text="User Profile" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+         </children>
+      </AnchorPane>
+   </top>
+</BorderPane>
