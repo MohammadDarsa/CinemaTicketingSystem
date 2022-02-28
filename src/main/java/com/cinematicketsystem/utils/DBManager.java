@@ -43,7 +43,7 @@ public class DBManager {
     private void createConnection() throws ClassNotFoundException, SQLException {
         if(connection != null) return;
         Class.forName("com.mysql.jdbc.Driver");
-        connection = DriverManager.getConnection(url2, user2, password2);
+        connection = DriverManager.getConnection(url, user, password);
     }
 
     public Integer executeUpdate(String query) {

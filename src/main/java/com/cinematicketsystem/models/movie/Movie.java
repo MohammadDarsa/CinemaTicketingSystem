@@ -2,6 +2,7 @@ package com.cinematicketsystem.models.movie;
 
 
 import com.cinematicketsystem.annotations.*;
+import com.cinematicketsystem.models.user.admin.Admin;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -40,7 +41,6 @@ public class Movie {
     private Integer ticketsSold;
     @Col(name = "image")
     private String imagePath;
-    @Col(name = "admin_id")
-    private Integer adminId;
-
+    @ManyToOne(key = "admin_id")
+    private Admin admin;
 }

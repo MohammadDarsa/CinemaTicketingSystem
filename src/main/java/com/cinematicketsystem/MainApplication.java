@@ -15,7 +15,7 @@ public class MainApplication extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        primaryStage.setTitle("GUI project");
+        primaryStage.setTitle("Cinema System");
         sceneManager.setStage(primaryStage);
         sceneManager.switchScene(null, "/view/login.fxml", "style.css");
     }
