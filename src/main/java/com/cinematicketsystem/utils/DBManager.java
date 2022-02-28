@@ -27,8 +27,8 @@ public class DBManager {
     private final String password = "NPEAg9OPyT8t3bK8Lup3";
 
     private final String url2 = "jdbc:mysql://localhost:3306/mydb?characterEncoding=latin1&useConfigs=maxPerformance";
-    private final String user2 = "root";
-    private final String password2 = "kouti123";
+    private final String user2 = "CinemaDeveloper";
+    private final String password2 = "AAbbcc@123";
 
     @SneakyThrows
     private DBManager() {
@@ -293,8 +293,8 @@ public class DBManager {
                         String fkid = null;
                         if(oneToOne != null)
                             fkid = resultSet.getString(oneToOne.key());
-                        if(manyToOne!= null)
-                            fkid = resultSet.getString(manyToOne.key());
+//                        if(manyToOne!= null)
+//                            fkid = resultSet.getString(manyToOne.key());
                         String colid = getIdNameFromType(field.getType());
                         attributes.addAttribute(colid, fkid);
                         field.set(dto, selectAll(field.getType(), attributes).get(0));

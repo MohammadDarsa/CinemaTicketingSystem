@@ -33,10 +33,10 @@ public class Ticket {
     @Col(name = "seat_id")
     private Integer seatId;
 
-    @ManyToOne(key = "customer_id")
+    @OneToOne(key = "customer_id")
     private Customer customer;
-    @ManyToOne(key = "movie_id")
+    @OneToOne(key = "movie_id")
     private Movie movie;
-    @ManyToOne(key = "seat_id")
+    @OneToOne(key = "seat_id")
     private Seat seat;
 }
