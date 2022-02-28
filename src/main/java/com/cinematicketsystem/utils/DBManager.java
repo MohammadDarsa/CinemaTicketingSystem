@@ -464,7 +464,7 @@ public class DBManager {
         int id = -1;
         try {
             createConnection();
-            CallableStatement cstmt = connection.prepareCall("{? = call selectSeatFromMovie(?)}");
+            CallableStatement cstmt = connection.prepareCall("{? = call getSeatFromMovie(?)}");
             cstmt.registerOutParameter(1, Types.INTEGER);
             cstmt.setInt(2, movieId);
             cstmt.execute();
@@ -481,7 +481,7 @@ public class DBManager {
         int id = -1;
         try {
             createConnection();
-            CallableStatement cstmt = connection.prepareCall("{? = call selectRoomFromMovie(?)}");
+            CallableStatement cstmt = connection.prepareCall("{? = call getRoomFromMovie(?)}");
             cstmt.registerOutParameter(1, Types.INTEGER);
             cstmt.setInt(2, movieId);
             cstmt.execute();
@@ -496,7 +496,7 @@ public class DBManager {
     public void buyTicket(int movieid, int customerid, int seatid) {
         try {
             createConnection();
-            CallableStatement cstmt = connection.prepareCall("{call buyticket(?, ?, ?)}");
+            CallableStatement cstmt = connection.prepareCall("{call buyTicket(?, ?, ?)}");
             cstmt.setInt(1, customerid);
             cstmt.setInt(2, movieid);
             cstmt.setInt(3, seatid);
